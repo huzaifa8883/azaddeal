@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from "react-router-dom"
 import { useState,useRef } from "react";
 import { MdOutlineExpandMore } from "react-icons/md";
 // import { cities } from "../cites";
@@ -393,6 +394,7 @@ const Home = () => {
       </div>
 
       {/* Category Cards */}
+      <Link to="/listing">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4">
   {categories.map((category, index) => (
     <div
@@ -413,9 +415,12 @@ const Home = () => {
           {category.name}
         </h3>
       </div>
+    
     </div>
+   
   ))}
 </div>
+</Link>
 
 
 
