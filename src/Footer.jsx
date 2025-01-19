@@ -14,7 +14,7 @@ import {  faEnvelope, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
+    <footer className="bg-gray-900 text-white py-12 overflow-x-hidden">
       <div className="container mx-auto px-6 lg:px-20">
         {/* Top Section */}
         <div className="flex flex-wrap justify-between gap-8">

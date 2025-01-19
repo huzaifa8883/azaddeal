@@ -1,4 +1,4 @@
-export const cities = [
+ const cities = [
     'Abbottabad',
     'Adezai',
     'Ahmadpur East',
@@ -240,3 +240,6 @@ export const cities = [
     'Zhob',
     'Ziarat'
 ];
+
+
+export default cities
