@@ -59,10 +59,10 @@ const Home = () => {
 
  
   const categories = [
-    { name: "Mobiles", image: "https://cdn.mos.cms.futurecdn.net/sM4MRXaezT3u2b94uzitWM.jpg" },
-    { name: "Cars", image: "https://cdn.pixabay.com/photo/2014/09/07/22/34/car-race-438467_640.jpg" },
-    { name: "Properties", image: "https://cdn.pixabay.com/photo/2017/07/08/02/16/house-2483336_640.jpg" },
-    { name: "Academics", image: "https://png.pngtree.com/thumb_back/fh260/background/20231002/pngtree-symbolic-representation-of-academic-achievement-3d-render-depicting-a-black-mortarboard-image_13554732.png" }
+    { adds:195,name: "Mobiles", image: "https://images.unsplash.com/photo-1607936854279-55e8a4c64888?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxMjA3fDB8MXxzZWFyY2h8MXx8aXBob25lJTIwMTJ8fDB8fHx8MTYzMTUxMTk3MQ&ixlib=rb-1.2.1&q=80&w=1080" },
+    { adds:58,name: "Cars", image: "https://cdn.pixabay.com/photo/2014/09/07/22/34/car-race-438467_640.jpg" },
+    { adds:200,name: "Properties", image: "https://cdn.pixabay.com/photo/2017/07/08/02/16/house-2483336_640.jpg" },
+    { adds:300,name: "Academics", image: "https://png.pngtree.com/thumb_back/fh260/background/20231002/pngtree-symbolic-representation-of-academic-achievement-3d-render-depicting-a-black-mortarboard-image_13554732.png" }
   ];
 
   const scroll = (direction) => {
@@ -395,31 +395,42 @@ const Home = () => {
 
       {/* Category Cards */}
       <Link to="/listing">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 px-4">
-  {categories.map((category, index) => (
-    <div
-      key={index}
-      className="relative group transform transition-all duration-300  hover:shadow-2xl"
-    >
-      {/* Lightened Dark Overlay on Card Image */}
-      <div className="absolute inset-0 bg-black bg-opacity-30 rounded-2xl z-10"></div>
-      {/* Card Image */}
-      <img
-        src={category.image}
-        alt={category.name}
-        className="w-full h-80 object-cover rounded-2xl shadow-lg transition-all duration-300 group-hover:scale-105 "
-      />
-      {/* Card Overlay with Category Name */}
-      <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-transparent to-black bg-opacity-60  py-3 rounded-b-lg">
-        <h3 className="text-white z-50 text-lg sm:text-xl font-raleway font-semibold text-center shadow-md transition-all duration-300 group-hover:text-yellow-400">
-          {category.name}
-        </h3>
+      <div className="flex justify-center mt-12">
+  <div className="max-w-4xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:ml-36 ml-0">
+    {categories.map((category, index) => (
+      <div
+        key={index}
+        className="relative group transform transition-all duration-300 hover:scale-105"
+      >
+        {/* Dark overlay on hover */}
+        <div className="absolute inset-0 bg-black bg-opacity-40 rounded-2xl opacity-100 transition-opacity duration-300"></div>
+        
+        {/* Card Image */}
+        <img
+          src={category.image}
+          alt={category.name}
+          className="w-full h-72 object-cover rounded-2xl shadow-md group-hover:shadow-lg transition-shadow duration-300"
+        />
+        
+        {/* Category Name */}
+        <div className="absolute bottom-0 left-0 right-0 rounded-2xl p-4">
+          <h3 className="text-gray-100 text-lg sm:text-lg font-semibold font-raleway mb-1">
+            {category.name}
+          </h3>
+          <h3 className="text-gray-300 text-sm sm:text-sm font-semibold font-roboto">
+            {category.adds} Ads
+          </h3>
+        </div>
       </div>
-    
-    </div>
-   
-  ))}
+    ))}
+  </div>
 </div>
+
+
+
+
+
+
 </Link>
 
 
@@ -432,7 +443,7 @@ const Home = () => {
       {/* Ads Section */}
      
     </div>
-    <div className="w-full mx-auto p-4 flex flex-wrap font-manrope font-semibold justify-center mt-8 sm:justify-between gap-4">
+    <div className="w-full mx-auto p-4 flex flex-wrap font-manrope font-semibold justify-center mt-8 sm:justify-between gap-4 ">
   {/* Mobiles Button */}
   <button
     className={`flex items-center px-10 py-4 rounded-full shadow-lg transition-all duration-300 ease-in-out transform 
@@ -485,13 +496,12 @@ const Home = () => {
         <a href="#" className="text-green-700 font-sans mx-7 font-semibold hover:underline">Explore Whats New</a>
 
       </div>
-      <div className='w-full mx-auto p-4 xl:px-16 md:translate-y-[-20px] translate-y-[-0px]'>
+      <div className='w-full mx-auto p-4 xl:px-8 md:translate-y-[-20px] translate-y-[-0px]'>
   <div className='md:flex justify-between items-center flex-auto mb-6'>
-  <h1 className='font-roboto font-bold text-2xl my-2 py-7 text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-black tracking-wide'>
-  Mobiles for Sale
-</h1>
+    <h1 className='font-roboto font-bold text-2xl my-2 py-7 text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-black tracking-wide'>
+      Mobiles for Sale
+    </h1>
 
-  
     <button className='font-sans font-bold text-base bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-all duration-300 ease-in-out shadow-md'>
       See More
     </button>
@@ -519,21 +529,11 @@ const Home = () => {
               className='object-cover w-full h-80 cursor-pointer transition-transform duration-300 transform hover:scale-105'
               alt='Property'
             />
-            {/* Favorite Icon on top of the image */}
-            <div
-              className={`flex items-center justify-center w-10 h-10 rounded-full group cursor-pointer transition-all duration-300 
-                          ${favorites[index] ? 'bg-red-500' : 'bg-gray-300'} absolute top-2 right-2 shadow-lg hover:bg-red-600`}>
-              <FontAwesomeIcon icon={faHeartCirclePlus} className={`text-${favorites[index] ? 'white' : 'red-500'} text-[18px] group-hover:text-white`} />
-            </div>
             <div className='p-6'>
-              <div className='flex justify-between items-center mb-2'>
-                <div className='price-location'>
-                  <h3 className='font-bold font-roboto text-2xl text-gray-800'>{property.price}</h3>
-                  <h3 className='font-helveticaLight text-base line-through text-gray-500'>{property.originalPrice}</h3>
-                </div>
-              </div>
               <div className='font-sans font-semibold my-3'>
                 <h1 className='text-lg text-green-700'>{property.name}</h1>
+                {/* Displaying the company name under the product name */}
+                <h3 className='text-sm text-gray-600'>{property.company}</h3>
               </div>
               <div className='location flex items-center'>
                 <FontAwesomeIcon icon={faLocationDot} className='text-[14px] text-gray-500' />
@@ -542,6 +542,36 @@ const Home = () => {
               <div className='details font-montserrat text-[14px] text-gray-500 mt-2'>
                 {property.details}
               </div>
+
+              {/* Price and Heart Icon */}
+              <div className="h-[1px] w-full bg-gray-200"></div>
+        
+              <div className='flex justify-between items-center mt-6'>
+
+             
+              <div className='price-location flex items-center justify-between w-full'>
+                
+  {/* Smaller Price */}
+  <div className='flex flex-col items-start'>
+    <h4 className='font-helveticaLight text-sm text-gray-500'>{property.discountPrice}</h4> {/* Smaller price */}
+  </div>
+
+  {/* Main Price */}
+  <h3 className='font-semibold font-helveticaLight text-lg'>{property.price}</h3>
+
+  {/* Heart icon next to the price */}
+  <div
+    className={`flex items-center justify-center w-10 h-10 rounded-full group cursor-pointer ml-20 
+                ${favorites[index] ? 'bg-red-500' : 'bg-gray-300'} transition-all duration-300`}>
+    <FontAwesomeIcon icon={faHeartCirclePlus} className={`text-${favorites[index] ? 'white' : 'red-500'} text-[18px] group-hover:text-white`} />
+  </div>
+</div>
+
+
+
+              </div>
+
+              {/* Contact Button */}
               <div className='mt-6'>
                 <button className='font-bold text-base bg-green-800 text-white px-6 py-3 rounded-lg font-raleway hover:bg-green-600 transition-all duration-300 ease-in-out shadow-md w-full'>
                   Contact
@@ -552,7 +582,7 @@ const Home = () => {
         </div>
       ))}
     </div>
-    
+
     {/* Right Scroll Button */}
     <button
       className='absolute right-4 top-40 transform -translate-y-1/2 z-10 
@@ -574,7 +604,8 @@ const Home = () => {
 
 
 
-<div className='w-full mx-auto p-4 xl:px-16 md:translate-y-[-50px] translate-y-[-0px]'>
+
+<div className='w-full mx-auto p-4 xl:px-8 md:translate-y-[-50px] translate-y-[-0px]'>
   <div className='md:flex justify-between items-center flex-auto mb-4'>
     <h1 className='font-roboto font-bold text-2xl my-2 py-7 text-gray-800'>Properties for Sale</h1>
    
@@ -621,10 +652,8 @@ const Home = () => {
             </div>
             <div className='p-4'>
               <div className='flex justify-between items-center mb-2'>
-                <div className='price-location'>
-                  <h3 className='font-bold font-roboto text-2xl text-gray-800'>{property.price}</h3>
-                  <h3 className='font-helveticaLight text-base line-through text-gray-500'>{property.originalPrice}</h3>
-                </div>
+           
+              
               </div>
               <div className='font-sans font-semibold my-2'>
                 <h1 className='text-lg text-green-700'>{property.name}</h1>
@@ -635,6 +664,24 @@ const Home = () => {
               </div>
               <div className='details font-montserrat text-[14px] text-gray-500'>
                 {property.details}
+              </div>
+              <div className="h-[1px] w-full bg-gray-200 mt-3"></div>
+              <div className='price-location flex items-center justify-between w-full mt-6'>
+                
+                {/* Smaller Price */}
+                <div className='flex flex-col items-start '>
+                  <h4 className='font-helveticaLight text-sm text-gray-500'>{property.discountPrice}</h4> {/* Smaller price */}
+                </div>
+              
+                {/* Main Price */}
+                <h3 className='font-semibold font-helveticaLight text-lg'>{property.price}</h3>
+              
+                {/* Heart icon next to the price */}
+                <div
+                  className={`flex items-center justify-center w-10 h-10 rounded-full group cursor-pointer ml-20 
+                              ${favorites[index] ? 'bg-red-500' : 'bg-gray-300'} transition-all duration-300`}>
+                  <FontAwesomeIcon icon={faHeartCirclePlus} className={`text-${favorites[index] ? 'white' : 'red-500'} text-[18px] group-hover:text-white`} />
+                </div>
               </div>
               <div className="mt-4">
               <button className='font-bold text-base bg-green-800 text-white px-6 py-3 rounded-lg font-raleway hover:bg-green-600 transition-all duration-300 ease-in-out shadow-md w-full'>
@@ -663,7 +710,7 @@ const Home = () => {
 
 
 
-<div className='w-full mx-auto p-4 xl:px-16 md:translate-y-[-50px] translate-y-[-0px]'>
+<div className='w-full mx-auto p-4 xl:px-8 md:translate-y-[-50px] translate-y-[-0px]'>
   <div className='md:flex justify-between items-center flex-auto mb-4'>
     <h1 className='font-roboto font-bold text-2xl my-2 py-7 text-gray-800'>Cars for Sale</h1>
    
@@ -710,10 +757,7 @@ const Home = () => {
             </div>
             <div className='p-4'>
               <div className='flex justify-between items-center mb-2'>
-                <div className='price-location'>
-                  <h3 className='font-bold font-roboto text-2xl text-gray-800'>{property.price}</h3>
-                  <h3 className='font-helveticaLight text-base line-through text-gray-500'>{property.originalPrice}</h3>
-                </div>
+             
               </div>
               <div className='font-sans font-semibold my-2'>
                 <h1 className='text-lg text-green-700'>{property.name}</h1>
@@ -724,6 +768,26 @@ const Home = () => {
               </div>
               <div className='details font-montserrat text-[14px] text-gray-500'>
                 {property.details}
+              </div>
+
+              <div className="h-[1px] w-full bg-gray-200 mt-3"></div>
+
+              <div className='price-location flex items-center justify-between w-full mt-6'>
+                
+                {/* Smaller Price */}
+                <div className='flex flex-col items-start '>
+                  <h4 className='font-helveticaLight text-sm text-gray-500'>{property.discountPrice}</h4> {/* Smaller price */}
+                </div>
+              
+                {/* Main Price */}
+                <h3 className='font-semibold font-helveticaLight text-lg'>{property.price}</h3>
+              
+                {/* Heart icon next to the price */}
+                <div
+                  className={`flex items-center justify-center w-10 h-10 rounded-full group cursor-pointer ml-20 
+                              ${favorites[index] ? 'bg-red-5800' : 'bg-gray-300'} transition-all duration-300`}>
+                  <FontAwesomeIcon icon={faHeartCirclePlus} className={`text-${favorites[index] ? 'white' : 'red-500'} text-[18px] group-hover:text-white`} />
+                </div>
               </div>
               <div className="mt-4">
               <button className='font-bold text-base bg-green-800 text-white px-6 py-3 rounded-lg font-raleway hover:bg-green-600 transition-all duration-300 ease-in-out shadow-md w-full'>
