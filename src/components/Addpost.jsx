@@ -10,6 +10,7 @@ import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import axios from 'axios';
+import Footer from "../Footer"
 // Leaflet marker icon fix for React Leaflet
 // delete L.Icon.Default.prototype._getIconUrl;
 // L.Icon.Default.mergeOptions({
@@ -1117,7 +1118,7 @@ const handleCityClick = (city) => {
 
    
     <div className="min-h-screen mt-60 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-5 sm:p-10">
-    <div className="w-full flex flex-col md:flex-grow  shadow-2xl rounded-3xl overflow-hidden md:px-80 px-4">
+    <div className="w-full flex flex-col md:flex-grow  shadow-2xl rounded-3xl overflow-hidden md:px-40 px-4">
     {/* Left Side: Ad Form */}
     {!isPreview ? (
 <div className="w-full p-8 sm:p-12 text-gray-800 flex flex-col rounded-3xl shadow-xl border border-gray-200 transition duration-300 transform bg-gradient-to-br from-indigo-50 via-purple-50 to-teal-50">
@@ -1515,6 +1516,7 @@ const handleCityClick = (city) => {
 
 </div>
 
+<Footer/>
 
 
 </>

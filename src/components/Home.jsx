@@ -237,10 +237,12 @@ const Home = () => {
   </button>
 
   {/* Post Ad Button */}
+  <Link to="/addpost">
   <button className="px-6 font-sansing py-3 bg-gradient-to-r from-green-500 to-green-700 text-white rounded-3xl h-12 shadow-lg transform hover:scale-110 hover:bg-gradient-to-r hover:from-green-600 hover:to-green-800 transition-all duration-300 flex items-center space-x-2 text-sm sm:text-base">
     <FaPlusCircle className="text-sm" />
     <span>Post Ad</span>
   </button>
+  </Link>
 </div>
 
         </div>
