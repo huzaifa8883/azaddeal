@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Home from './components/Home.jsx';
 import Listingpage from './components/Listingpage.jsx';
+import Addpost from './components/Addpost.jsx';
 const router = createBrowserRouter([
   {
     path:"/",
@@ -14,7 +15,11 @@ const router = createBrowserRouter([
  {
   path:"/listing",
   element:<Listingpage/>
- } 
+ } ,
+{
+  path:"/addpost",
+  element:<Addpost/>
+}
 ])
 
 createRoot(document.getElementById('root')).render(
