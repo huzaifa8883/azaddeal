@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faAngleDown ,faPhone,faComments,faHeart,faTimes,faSearch,faHeartCirclePlus,faFilter} from '@fortawesome/free-solid-svg-icons';
 import Footer from '../Footer';
 import { faBars, faTh } from '@fortawesome/free-solid-svg-icons'
-
+import { FaCar, FaMobileAlt, FaHome } from 'react-icons/fa'; // Importing icons
 // Unique and popular cities
 const uniqueCities = Array.from(new Set(cities));
 const popularCities = ['Karachi', 'Lahore', 'Islamabad', 'Faisalabad', 'Rawalpindi', 'Multan'];
@@ -439,6 +439,266 @@ useEffect(() => {
       observerRef.current.observe(node);
     }
   }, []);
+  const categoryFilters = {
+    mobiles: [
+      { label: "Brand", options: ["Apple", "Samsung", "Xiaomi", "Oppo", "OnePlus"] },
+      { label: "Condition", options: ["New", "Used"] },
+      { label: "Storage", options: ["64GB", "128GB", "256GB"] },
+    ],
+    cars: [
+      { label: "Manufacturer", options: ["Toyota", "Honda", "BMW", "Mercedes"] },
+      { label: "Fuel Type", options: ["Petrol", "Diesel", "Electric"] },
+      { label: "Transmission", options: ["Automatic", "Manual"] },
+      { label: "Color", options: ["Red", "Black", "White", "Blue"] },
+    ],
+    properties: [
+      { label: "Type", options: ["Apartment", "Villa", "Commercial"] },
+      { label: "Bedrooms", options: ["1 BHK", "2 BHK", "3 BHK"] },
+      { label: "Furnished", options: ["Fully Furnished", "Semi-Furnished", "Unfurnished"] },
+    ],
+  };
+  
+  const renderCategorySpecificFilters = () => {
+    const selectClass =
+      "p-3 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-sm hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto";
+  
+    return (
+      <div>
+        {selectedCategory === "cars" && (
+          <>
+            <label className="text-lg font-semibold font-helveticaLight text-gray-800 mb-5 mt-6 block">
+              <FaCar className="inline-block mr-2 text-blue-500" />
+              Car Specifications
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-sans font-semibold">
+              <div className="flex flex-col">
+                <label htmlFor="car-manufacture-year" className="text-sm font-sans text-gray-700 mb-1">
+                  Manufacture Year
+                </label>
+                <select id="car-manufacture-year" className={selectClass}>
+                  <option value="">Select Manufacture Year</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="car-engine-type" className="text-sm font-sans text-gray-700 mb-1">
+                  Engine Type
+                </label>
+                <select id="car-engine-type" className={selectClass}>
+                  <option value="">Select Engine Type</option>
+                  <option value="petrol">Petrol</option>
+                  <option value="diesel">Diesel</option>
+                  <option value="electric">Electric</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="car-fuel-type" className="text-sm font-sans text-gray-700 mb-1">
+                  Fuel Type
+                </label>
+                <select id="car-fuel-type" className={selectClass}>
+                  <option value="">Select Fuel Type</option>
+                  <option value="petrol">Petrol</option>
+                  <option value="diesel">Diesel</option>
+                  <option value="hybrid">Hybrid</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="car-drive-type" className="text-sm font-sans text-gray-700 mb-1">
+                  Drive Type
+                </label>
+                <select id="car-drive-type" className={selectClass}>
+                  <option value="">Select Drive Type</option>
+                  <option value="fwd">FWD</option>
+                  <option value="rwd">RWD</option>
+                  <option value="awd">AWD</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="car-transmission" className="text-sm font-sans text-gray-700 mb-1">
+                  Transmission
+                </label>
+                <select id="car-transmission" className={selectClass}>
+                  <option value="">Select Transmission</option>
+                  <option value="automatic">Automatic</option>
+                  <option value="manual">Manual</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="car-color" className="text-sm font-sans text-gray-700 mb-1">
+                  Color
+                </label>
+                <select id="car-color" className={selectClass}>
+                  <option value="">Select Color</option>
+                  <option value="red">Red</option>
+                  <option value="blue">Blue</option>
+                  <option value="black">Black</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="car-seating" className="text-sm font-sans text-gray-700 mb-1">
+                  Seating Capacity
+                </label>
+                <select id="car-seating" className={selectClass}>
+                  <option value="">Select Seating Capacity</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="7">7</option>
+                </select>
+              </div>
+            </div>
+          </>
+        )}
+  
+        {selectedCategory === "mobiles" && (
+          <>
+            <label className="text-lg font-semibold font-roboto text-gray-800 mb-6 mt-5 block">
+              <FaMobileAlt className="inline-block mr-2 text-blue-500" />
+              Mobile Specifications
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-semibold font-sans">
+              <div className="flex flex-col">
+                <label htmlFor="mobile-brand" className="text-sm font-sans text-gray-700 mb-1">
+                  Brand
+                </label>
+                <select id="mobile-brand" className={selectClass}>
+                  <option value="">Select Brand</option>
+                  <option value="apple">Apple</option>
+                  <option value="samsung">Samsung</option>
+                  <option value="xiaomi">Xiaomi</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="mobile-ram" className="text-sm font-sans text-gray-700 mb-1">
+                  RAM
+                </label>
+                <select id="mobile-ram" className={selectClass}>
+                  <option value="">Select RAM</option>
+                  <option value="4gb">4GB</option>
+                  <option value="6gb">6GB</option>
+                  <option value="8gb">8GB</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="mobile-storage" className="text-sm font-sans text-gray-700 mb-1">
+                  Storage
+                </label>
+                <select id="mobile-storage" className={selectClass}>
+                  <option value="">Select Storage</option>
+                  <option value="64gb">64GB</option>
+                  <option value="128gb">128GB</option>
+                  <option value="256gb">256GB</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="mobile-camera" className="text-sm font-sans text-gray-700 mb-1">
+                  Camera Quality
+                </label>
+                <select id="mobile-camera" className={selectClass}>
+                  <option value="">Select Camera Quality</option>
+                  <option value="12mp">12 MP</option>
+                  <option value="48mp">48 MP</option>
+                  <option value="108mp">108 MP</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="mobile-battery" className="text-sm font-sans text-gray-700 mb-1">
+                  Battery Life
+                </label>
+                <select id="mobile-battery" className={selectClass}>
+                  <option value="">Select Battery Life</option>
+                  <option value="3000mah">3000 mAh</option>
+                  <option value="4000mah">4000 mAh</option>
+                  <option value="5000mah">5000 mAh</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="mobile-color" className="text-sm font-sans text-gray-700 mb-1">
+                  Color
+                </label>
+                <select id="mobile-color" className={selectClass}>
+                  <option value="">Select Color</option>
+                  <option value="black">Black</option>
+                  <option value="white">White</option>
+                  <option value="blue">Blue</option>
+                </select>
+              </div>
+            </div>
+          </>
+        )}
+  
+        {selectedCategory === "properties" && (
+          <>
+            <label className="text-lg font-semibold font-roboto text-gray-800 mb-6 mt-5 block">
+              <FaHome className="inline-block mr-2 text-blue-500" />
+              Property Specifications
+            </label>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-semibold font-sans">
+              <div className="flex flex-col">
+                <label htmlFor="property-type" className="text-sm font-sans text-gray-700 mb-1">
+                  Property Type
+                </label>
+                <select id="property-type" className={selectClass}>
+                  <option value="">Select Property Type</option>
+                  <option value="apartment">Apartment</option>
+                  <option value="house">House</option>
+                  <option value="villa">Villa</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="property-size" className="text-sm font-sans text-gray-700 mb-1">
+                  Size (sq ft)
+                </label>
+                <select id="property-size" className={selectClass}>
+                  <option value="">Select Size (sq ft)</option>
+                  <option value="500">500</option>
+                  <option value="1000">1000</option>
+                  <option value="2000">2000</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="property-bedrooms" className="text-sm font-sans text-gray-700 mb-1">
+                  Bedrooms
+                </label>
+                <select id="property-bedrooms" className={selectClass}>
+                  <option value="">Select Bedrooms</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="property-bathrooms" className="text-sm font-sans text-gray-700 mb-1">
+                  Bathrooms
+                </label>
+                <select id="property-bathrooms" className={selectClass}>
+                  <option value="">Select Bathrooms</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+              <div className="flex flex-col">
+                <label htmlFor="property-location" className="text-sm font-sans text-gray-700 mb-1">
+                  Location
+                </label>
+                <select id="property-location" className={selectClass}>
+                  <option value="">Select Location</option>
+                  <option value="city">City</option>
+                  <option value="suburb">Suburb</option>
+                  <option value="rural">Rural</option>
+                </select>
+              </div>
+            </div>
+          </>
+        )}
+      </div>
+    );
+  };
+  
+  
+  
   
 
   return (
@@ -479,46 +739,43 @@ useEffect(() => {
 
 
 
-      <div className='grid grid-cols-1 md:grid-cols-4 gap-8 md:mx-10 mx-0 my-10 w-full overflow-x-hidden'>
-        {/* Filter Section */}
-        <div className="relative bg-white/30 backdrop-blur-xl rounded-3xl p-10 shadow-2xl transition-transform duration-500 hover:shadow-3xl border border-gray-200 border-t-2 border-l-2 md:col-span-1">
-  <h2 className="font-sans text-4xl font-extrabold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient">
-    Filters
-  </h2>
-  <div className="mb-6">
-    <label className="text-lg font-semibold text-gray-800">Category</label>
-    <select
-      value={selectedCategory}
-      onChange={handleCategoryChange}
-      className="mt-3 p-3 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-md transition-all duration-300 hover:bg-blue-50/90 hover:border-blue-400 hover:shadow-lg"
-    >
-      <option value="mobiles">Mobiles</option>
-      <option value="cars">Cars</option>
-      <option value="properties">Properties</option>
-   
-    </select>
-  </div>
+<div className="grid grid-cols-1 md:grid-cols-4 gap-8 mx-auto my-10 w-full overflow-x-hidden">
+  {/* Filter Section */}
+  <div className="relative bg-white/30 backdrop-blur-xl rounded-3xl p-8 shadow-2xl transition-transform duration-500 hover:shadow-3xl border border-gray-200 border-t-2 border-l-2 mx-auto max-w-4xl">
+    <h2 className="font-sans text-3xl md:text-4xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient">
+      Filters
+    </h2>
+    <div className="mb-6">
+      <label className="text-lg font-semibold text-gray-800">Category</label>
+      <select
+        value={selectedCategory}
+        onChange={handleCategoryChange}
+        className="mt-3 p-3 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-md transition-all duration-300 hover:bg-blue-50/90 hover:border-blue-400 hover:shadow-lg"
+      >
+        <option value="mobiles">Mobiles</option>
+        <option value="cars">Cars</option>
+        <option value="properties">Properties</option>
+      </select>
+    </div>
 
-  {/* Sort Options */}
-  <div className="mb-6">
-    <label className="text-lg font-semibold text-gray-800">Sort By</label>
-    <select
-      value={sortOption}
-      onChange={handleSortChange}
-      className="mt-3 p-3 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-md transition-all duration-300 hover:bg-blue-50/90 hover:border-blue-400 hover:shadow-lg"
-    >
-      <option value="default" disabled>Select</option>
-      <option value="asc">Price: Low to High</option>
-      <option value="desc">Price: High to Low</option>
-      <option value="popular">Most Popular</option>
-    </select>
-  </div>
+    {/* Sort Options */}
+    <div className="mb-6">
+      <label className="text-lg font-semibold text-gray-800">Sort By</label>
+      <select
+        value={sortOption}
+        onChange={handleSortChange}
+        className="mt-3 p-3 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-md transition-all duration-300 hover:bg-blue-50/90 hover:border-blue-400 hover:shadow-lg"
+      >
+        <option value="default" disabled>Select</option>
+        <option value="asc">Price: Low to High</option>
+        <option value="desc">Price: High to Low</option>
+        <option value="popular">Most Popular</option>
+      </select>
+    </div>
 
-
-  {/* State Selection */}
-  <div className="mb-6 ">
+    {/* State Selection */}
+    <div className="mb-6">
       <h2 className="text-xl font-semibold text-gray-700">Select State and City</h2>
-      
       {/* State Selector */}
       <label htmlFor="state" className="block mt-4 text-gray-600">State</label>
       <select
@@ -546,67 +803,62 @@ useEffect(() => {
         ))}
       </select>
     </div>
-  <div className="mt-4 flex items-center space-x-6">
+
+    <div className="mt-4 flex items-center space-x-6">
+      <div className="flex items-center">
+        <input
+          type="checkbox"
+          id="featured"
+          className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+        />
+        <label htmlFor="featured" className="ml-2 text-lg font-bold text-gray-700">
+          Featured
+        </label>
+      </div>
+
+      <div className="flex items-center">
+        <input
+          type="checkbox"
+          id="urgent"
+          className="h-4 w-4 text-red-600 focus:ring-red-500"
+        />
+        <label htmlFor="urgent" className="ml-2 text-lg font-bold text-gray-700">
+          Urgent
+        </label>
+      </div>
+    </div>
+
+    <div className="mt-4">
+      <label className="text-lg font-semibold text-gray-800">Is Deliverable</label>
+      <div className="mt-2 flex items-center space-x-4">
         <div className="flex items-center">
           <input
-            type="checkbox"
-            // checked={isFeatured}
-            // onChange={() => setIsFeatured(!isFeatured)}
-            id="featured"
-            className="h-4 w-4 text-blue-600 focus:ring-blue-500"
+            type="radio"
+            id="yes"
+            name="deliverable"
+            className="h-4 w-4 text-green-600 focus:ring-green-500"
           />
-          <label htmlFor="featured" className="ml-2 text-lg font-bold text-gray-700">
-            Featured
+          <label htmlFor="yes" className="ml-2 text-sm text-gray-700">
+            Yes
           </label>
         </div>
 
         <div className="flex items-center">
           <input
-            type="checkbox"
-            // checked={isUrgent}
-            // onChange={() => setIsUrgent(!isUrgent)}
-            id="urgent"
+            type="radio"
+            id="no"
+            name="deliverable"
             className="h-4 w-4 text-red-600 focus:ring-red-500"
           />
-          <label htmlFor="urgent" className="ml-2 text-lg font-bold text-gray-700">
-            Urgent
+          <label htmlFor="no" className="ml-2 text-sm text-gray-700">
+            No
           </label>
         </div>
-        </div>
-        <div className="mt-4">
-        <label className="text-lg font-semibold text-gray-800">Is Deliverable</label>
-        <div className="mt-2 flex items-center space-x-4">
-          <div className="flex items-center">
-            <input
-              type="radio"
-              id="yes"
-              name="deliverable"
-              // checked={isDeliverable === "yes"}
-              // onChange={() => setIsDeliverable("yes")}
-              className="h-4 w-4 text-green-600 focus:ring-green-500"
-            />
-            <label htmlFor="yes" className="ml-2 text-sm text-gray-700">
-              Yes
-            </label>
-          </div>
+      </div>
+    </div>
 
-          <div className="flex items-center">
-            <input
-              type="radio"
-              id="no"
-              name="deliverable"
-              // checked={isDeliverable === "no"}
-              // onChange={() => setIsDeliverable("no")}
-              className="h-4 w-4 text-red-600 focus:ring-red-500"
-            />
-            <label htmlFor="no" className="ml-2 text-sm text-gray-700">
-              No
-            </label>
-          </div>
-        </div>
-        </div>
-  {/* Price Range */}
-  <div className='mt-4'>
+    {/* Price Range */}
+    <div className='mt-4'>
       <label className="text-lg font-semibold  text-gray-800">Price Range</label>
       <div className="flex items-center justify-between mt-4">
         {/* Min Price Input */}
@@ -661,116 +913,121 @@ useEffect(() => {
         <span>Max pkr 400,000</span>
       </div>
     </div>
-    </div>
+  </div>
 
-   
-<div className="bg-white rounded-lg p-8 shadow-xl transition-transform duration-300 hover:shadow-2xl md:col-span-3">
-<div className="flex items-center space-x-4">
+  {/* Product Section */}
+  <div className="bg-white rounded-lg p-8 shadow-xl transition-transform duration-300 hover:shadow-2xl md:col-span-3">
+    <div className="flex items-center space-x-4">
       {/* Grid View Button - Hidden on Mobile */}
-  
-
       <button
         onClick={() => setIsGridView(true)}
-        className={`hidden md:block p-3 rounded-full transition-all duration-200 ${isGridView ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
+        className={`p-3 rounded-full transition-all duration-200 ${isGridView ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
       >
         <FontAwesomeIcon icon={faTh} size="lg" />
       </button>
+
       {/* List View Button - Hidden on Mobile */}
       <button
         onClick={() => setIsGridView(false)}
-        className={`hidden md:block p-3 rounded-full transition-all duration-200 ${!isGridView ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
+        className={`p-3 rounded-full transition-all duration-200 ${!isGridView ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
       >
         <FontAwesomeIcon icon={faBars} size="lg" />
       </button>
-   
-      <h2 className="text-4xl font-bold font-roboto text-gray-800 hover:text-green-600 transition duration-300 ml-4">Searched Products</h2>
+      
+      <h2 className="text-3xl md:text-4xl font-bold font-roboto text-gray-800 hover:text-green-600 transition duration-300 ml-4">Searched Products</h2>
     </div>
 
+    {renderCategorySpecificFilters()}
 
-  {/* Sort By dropdown */}
-  <div className="relative mb-6 mt-6">
-    <select
-      value={sortOption}
-      onChange={(e) => setSortOption(e.target.value)}
-      className="p-3 border rounded-md font-roboto shadow-sm bg-white border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200"
-    >
-      <option value="newlyListed">Sort By: Newly Listed</option>
-      <option value="mostRelevant">Most Relevant</option>
-      <option value="lowestPrice">Lowest Price</option>
-      <option value="highestPrice">Highest Price</option>
-    </select>
-  </div>
-
-  {/* Product Display */}
-  <div className={`grid ${isGridView ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8' : 'grid-cols-1'}`}>
-  {products.map((product, index) => {
-    const isLastElement = index === products.length - 1;
-    return (
-      <div
-        ref={isLastElement ? lastProductElementRef : null}
-        key={product.title || product.name}
-        className={`bg-white rounded-3xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-2xl border border-gray-100 ${isGridView ? 'flex flex-col' : 'flex items-center'} `}
+    {/* Sort By dropdown */}
+    <div className="relative mb-6 mt-6">
+      <select
+        value={sortOption}
+        onChange={(e) => setSortOption(e.target.value)}
+        className="p-3 border rounded-full text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400 w-full transition-all duration-300 hover:bg-gray-200"
       >
-        {/* Product Image */}
-        <div className="relative">
-          {/* Featured Button */}
-          <div className="absolute top-4 h-8 left-4 bg-green-800 text-gray-200 font-roboto text-sm font-semibold px-4 py-1 rounded-lg shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center">
-  Featured
-</div>
-
-<div className="relative">
-  <img
-    src={product.image}
-    alt={product.title || product.name}
-    className={`object-cover ${isGridView ? 'h-80 w-full' : 'h-72 w-72'} transition-transform duration-300`}
-  />
-  <div className="absolute inset-0 bg-black bg-opacity-15"></div> {/* Dark overlay */}
-</div>
-
-        </div>
-
-        {/* Product Content */}
-        <div className={`${isGridView ? 'p-6' : 'p-4 text-center'} space-y-5`}>
-          <h3 className="font-bold text-xl text-gray-800 hover:text-green-600 font-raleway transition duration-300">
-            {product.category === 'Academics' ? product.title : product.name}
-          </h3>
-          <p className="text-black font-semibold font-roboto">
-            {product.price}{' '}
-            <span className="line-through text-gray-400 font-sansing">{product.originalPrice}</span>
-          </p>
-          {product.category === 'Academics' && (
-            <p className="text-gray-500">{product.university} - {product.duration}</p>
-          )}
-          <p className="text-gray-500 font-roboto">{product.description || product.details}</p>
-          {product.location && (
-            <p className="text-gray-500 flex items-center font-raleway justify-center">
-              <FontAwesomeIcon icon={faLocationDot} className="mr-1 text-green-500" />
-              {product.location}
-            </p>
-          )}
-
-          {/* Heart Icon */}
-          <div className="flex justify-center items-center">
-            <FontAwesomeIcon
-              icon={faHeartCirclePlus}
-              className="text-green-500 text-2xl hover:text-green-600 transition duration-300 cursor-pointer"
-            />
+        <option value="default">Sort By</option>
+        <option value="asc">Price: Low to High</option>
+        <option value="desc">Price: High to Low</option>
+        <option value="featured">Featured</option>
+      </select>
+    </div>
+    <div className={`grid ${isGridView ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8' : 'grid-cols-1'} mx-auto`}>
+  {products.length > 0 ? (
+    products.map((product, index) => {
+      const isLastElement = index === products.length - 1;
+      return (
+        <div
+          ref={isLastElement ? lastProductElementRef : null}
+          key={product.id || product.title || product.name}
+          className={`bg-white rounded-3xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-2xl border border-gray-100 ${isGridView ? 'flex flex-col' : 'flex items-center'} mx-auto`}
+        >
+          {/* Product Image */}
+          <div className="relative">
+            {/* Featured Button */}
+            <div className="absolute top-4 h-8 left-4 bg-green-800 text-gray-200 font-roboto text-sm font-semibold px-4 py-1 rounded-lg shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center">
+              Featured
+            </div>
+            <div className="relative">
+              {product.image && (
+                <img
+                  src={product.image}
+                  alt={product.title || product.name}
+                  className={`object-cover ${isGridView ? 'h-80 w-full' : 'h-72 w-72'} transition-transform duration-300`}
+                />
+              )}
+              <div className="absolute inset-0 bg-black bg-opacity-15"></div> {/* Dark overlay */}
+            </div>
           </div>
 
-          {/* Contact Button */}
-          <div className="flex justify-center">
-  <button className="bg-gradient-to-r from-green-700 to-green-800 w-64 font-roboto text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:from-green-600 hover:to-green-800 transition duration-300 flex items-center justify-center">
-    <FontAwesomeIcon icon={faPhone} className="mr-2" />
-    Contact
-  </button>
-</div>
+          {/* Product Content */}
+          <div className={`${isGridView ? 'p-6' : 'p-4 text-center'} space-y-5`}>
+            <h3 className="font-bold text-xl text-gray-800 hover:text-green-600 font-raleway transition duration-300">
+              {product.category === 'Academics' ? product.title : product.name}
+            </h3>
+            <p className="text-black font-semibold font-roboto">
+              {product.price}{' '}
+              <span className="line-through text-gray-400 font-sansing">{product.originalPrice}</span>
+            </p>
+            {product.category === 'Academics' && (
+              <p className="text-gray-500">{product.university} - {product.duration}</p>
+            )}
+            <p className="text-gray-500 font-roboto">{product.description || product.details}</p>
+            {product.location && (
+              <p className="text-gray-500 flex items-center font-raleway justify-center">
+                <FontAwesomeIcon icon={faLocationDot} className="mr-1 text-green-500" />
+                {product.location}
+              </p>
+            )}
 
+            {/* Heart Icon */}
+            <div className="flex justify-center items-center">
+              <FontAwesomeIcon
+                icon={faHeartCirclePlus}
+                className="text-green-500 text-2xl hover:text-green-600 transition duration-300 cursor-pointer"
+              />
+            </div>
+
+            {/* Contact Button */}
+            <div className="flex justify-center">
+              <button className="bg-gradient-to-r from-green-700 to-green-800 w-64 font-roboto text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:from-green-600 hover:to-green-800 transition duration-300 flex items-center justify-center">
+                <FontAwesomeIcon icon={faPhone} className="mr-2" />
+                Contact
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    );
-  })}
+      );
+    })
+  ) : (
+    <p>No products available</p>
+  )}
 </div>
 
+
+  </div>
+    {/* Product Display */}
+      
 
 
   {/* Load More Button */}
@@ -797,7 +1054,8 @@ useEffect(() => {
 
 
 
-      </div>
+{/* </div> */}
+
       <Footer/>
     </>
   );
