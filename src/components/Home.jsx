@@ -197,299 +197,294 @@ const Home = () => {
     setCityOpen(false); // Close city dropdown
   };
   return (
-    <div>
-        <div
-      className="h-[700px] w-full relative bg-cover rounded-lg bg-center z-50"
-      style={{
-        backgroundImage: `url(https://img.freepik.com/free-vector/green-tropical-leaves-background_23-2148533234.jpg)`,
-      }}
-    >
-      {/* Light Green Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#2d2d2d]/70 via-[#1f7a47]/60 to-[#2d2d2d]/70 "    ></div>
+    <div className="h-full  bg-gradient-to-r from-[#020703] via-[#083b16] to-[#010c03]  ">
+<div
+  className="h-[700px] max-w-full mx-auto relative bg-cover rounded-lg bg-center z-10 flex justify-center items-center"
+  style={{ backgroundImage: `url('https://cdn.dribbble.com/users/5324991/screenshots/20449197/dribbble_shot_1_4x.png') `}}
+>
+  {/* Green Gradient Overlay */}
+  <div className="absolute inset-0 bg-gradient-to-r from-[#020703] via-[#083b16] to-[#010c03] opacity-95"></div>
 
-      <header className="absolute top-0 left-0 w-full text-white">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center flex-col sm:flex-row">
-          {/* Left Section */}
-          <div className="text-xl sm:text-3xl font-bold mb-4 sm:mb-0">
-            <span className="text-gray-200">Azad</span>{" "}
-            <span className="text-white font-extrabold">Deals</span>
-          </div>
+  <header className="absolute top-0 left-0 w-full text-white">
+    <div className="container mx-auto px-4 py-4 flex justify-between items-center flex-col sm:flex-row">
+      {/* Left Section */}
+      <div className="text-xl sm:text-3xl font-bold mb-4 sm:mb-0">
+        <span className="text-gray-200">Azad</span>{" "}
+        <span className="text-white font-extrabold">Deals</span>
+      </div>
 
-          {/* Center Section */}
-          <div className="flex space-x-4 sm:space-x-10 mb-4 sm:mb-0">
-            {/* Explore */}
-            <div className="flex items-center text-sm sm:text-base font-semibold font-sans">
-              <span>Explore</span>
-              <MdOutlineExpandMore className="ml-2 text-lg" />
-            </div>
-            {/* Today's Deals */}
-            <div className="flex items-center text-sm sm:text-base font-semibold font-sans">
-              <span>Today's Deals</span>
-              <MdOutlineExpandMore className="ml-2 text-lg" />
-            </div>
-          </div>
-
-          {/* Right Section */}
-          <div className="flex space-x-4">
-  {/* Get Started Button */}
-  <button className="px-6 font-sansing py-3 h-12 bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 font-semibold text-white rounded-3xl shadow-lg transform hover:scale-110 hover:bg-gradient-to-r hover:from-gray-500 hover:to-gray-600 transition-all duration-300 text-sm sm:text-base">
-    Get Started
-  </button>
-
-  {/* Post Ad Button */}
-  <Link to="/addpost">
-  <button className="px-6 font-sansing py-3 bg-gradient-to-r from-green-500 to-green-700 text-white rounded-3xl h-12 shadow-lg transform hover:scale-110 hover:bg-gradient-to-r hover:from-green-600 hover:to-green-800 transition-all duration-300 flex items-center space-x-2 text-sm sm:text-base">
-    <FaPlusCircle className="text-sm" />
-    <span>Post Ad</span>
-  </button>
-  </Link>
-</div>
-
+      {/* Center Section */}
+      <div className="flex space-x-4 sm:space-x-10 mb-4 sm:mb-0">
+        {/* Explore */}
+        <div className="flex items-center text-sm sm:text-base font-semibold font-sans">
+          <span>Explore</span>
+          <MdOutlineExpandMore className="ml-2 text-lg" />
         </div>
-      </header>
+        {/* Today's Deals */}
+        <div className="flex items-center text-sm sm:text-base font-semibold font-sans">
+          <span>Today's Deals</span>
+          <MdOutlineExpandMore className="ml-2 text-lg" />
+        </div>
+      </div>
 
-      {/* Large Text Section */}
-      <div className="absolute bottom-[70px] w-full text-center text-white px-4 sm:px-0 md:py-0 translate-y-[20px]">
-        {/* Main Heading */}
-        <h1 className="text-2xl font-montserrat sm:text-5xl font-extrabold">
-        Discover <span className="text-green-400">Mobiles</span> Cars{" "}
-          <span className="block mt-4 text-xl sm:text-4xl">Properties</span>
-        </h1>
-
-        {/* Description */}
-        <p className="text-[13px] sm:text-[16px] font-sansing text-gray-200 mt-4 max-w-lg mx-auto">
-        Post your listing today and turn your assets into cash, or find the perfect deal for your next purchase!"
-
-</p>
-
-        {/* Button */}
-        <button className="px-4 py-2 font-sansing h-12 w-40  mx-auto bg-gradient-to-r from-green-500 to-green-700 font-semibold text-white rounded-3xl shadow-md transform hover:scale-105 hover:from-green-600 hover:to-green-800 transition-all duration-300 flex items-center justify-center space-x-2 mt-4 text-base">
-          <FaPlusCircle className="text-lg" />
-          <span>Post Ad</span>
+      {/* Right Section */}
+      <div className="flex space-x-4">
+        {/* Get Started Button */}
+        <button className="px-6 py-3 h-12 bg-gradient-to-r from-gray-600 via-gray-700 to-gray-800 font-semibold text-white rounded-3xl shadow-lg transform hover:scale-110 hover:bg-gradient-to-r hover:from-gray-500 hover:to-gray-600 transition-all duration-300 text-sm sm:text-base">
+          Get Started
         </button>
 
-        <div className="flex items-center justify-center mt-16 relative">
-  {/* Location Icon */}
-  <FaMapMarkerAlt className="text-red-500 text-2xl mr-2" />
-
-  {/* Main Dropdown and Display */}
-  <div className="relative w-64">
-    {/* Country Display */}
-    {!selectedProvince && !selectedCity && (
-      <div
-        className="flex items-center justify-between bg-gray-300 rounded-md px-4 py-2 cursor-pointer shadow-md text-gray-800 font-semibold"
-        onClick={toggleProvinceDropdown}
-      >
-        <span>{selectedCountry}</span>
-        <FaChevronDown
-          className={`text-gray-600 transition-transform ${
-            isProvinceOpen ? "rotate-180" : ""
-          }`}
-        />
+        {/* Post Ad Button */}
+        <Link to="/addpost">
+          <button className="px-6 py-3 bg-gradient-to-r from-green-500 to-green-700 text-white rounded-3xl h-12 shadow-lg transform hover:scale-110 hover:bg-gradient-to-r hover:from-green-600 hover:to-green-800 transition-all duration-300 flex items-center space-x-2 text-sm sm:text-base">
+            <FaPlusCircle className="text-sm" />
+            <span>Post Ad</span>
+          </button>
+        </Link>
       </div>
-    )}
+    </div>
+  </header>
 
-    {/* Province Dropdown */}
-    {selectedProvince === "" && isProvinceOpen && (
-      <div className="absolute mt-2 w-full bg-white shadow-lg rounded-md z-10 max-h-48 overflow-y-auto ring-1 ring-gray-300">
-        <ul className="py-1 text-gray-700 text-sm">
-          {Object.keys(regions).map((province, index) => (
-            <li
-              key={index}
-              className="px-4 py-2 hover:bg-blue-500 hover:text-white cursor-pointer rounded-md transition-all"
-              onClick={() => handleProvinceSelect(province)}
-            >
-              {province}
-            </li>
-          ))}
-        </ul>
-      </div>
-    )}
+  {/* Large Text Section */}
+  <div className="absolute bottom-[70px] w-full text-center text-white px-4 sm:px-0 md:py-0 translate-y-[20px]">
+    {/* Main Heading */}
+    <h1 className="text-2xl font-montserrat sm:text-5xl font-extrabold">
+      Discover <span className="text-green-400">Mobiles</span> Cars{" "}
+      <span className="block mt-4 text-xl sm:text-4xl">Properties</span>
+    </h1>
 
-    {/* City Dropdown */}
-    {selectedProvince && !selectedCity && (
-      <div className="relative mt-2">
-        <div
-          className="flex justify-between items-center bg-gray-200 rounded-md px-4 py-2 cursor-pointer shadow-md"
-          onClick={toggleCityDropdown}
-        >
-          <span className="text-gray-800 font-semibold">{`Select City in ${selectedProvince}`}</span>
-          <FaChevronDown
-            className={`text-gray-600 transition-transform ${
-              isCityOpen ? "rotate-180" : ""
-            }`}
-          />
-        </div>
-        {isCityOpen && (
+    {/* Description */}
+    <p className="text-[13px] sm:text-[16px] font-sansing text-gray-200 mt-4 max-w-lg mx-auto">
+      Post your listing today and turn your assets into cash, or find the
+      perfect deal for your next purchase!
+    </p>
+
+    {/* Button */}
+    <button className="px-4 py-2 font-sansing h-12 w-40 mx-auto bg-gradient-to-r from-green-500 to-green-700 font-semibold text-white rounded-3xl shadow-md transform hover:scale-105 hover:from-green-600 hover:to-green-800 transition-all duration-300 flex items-center justify-center space-x-2 mt-4 text-base">
+      <FaPlusCircle className="text-lg" />
+      <span>Post Ad</span>
+    </button>
+
+    <div className="flex items-center justify-center mt-16 relative">
+      {/* Location Icon */}
+      <FaMapMarkerAlt className="text-red-500 text-2xl mr-2" />
+
+      {/* Main Dropdown and Display */}
+      <div className="relative w-64">
+        {/* Country Display */}
+        {!selectedProvince && !selectedCity && (
+          <div
+            className="flex items-center justify-between bg-gray-300 rounded-md px-4 py-2 cursor-pointer shadow-md text-gray-800 font-semibold"
+            onClick={toggleProvinceDropdown}
+          >
+            <span>{selectedCountry}</span>
+            <FaChevronDown
+              className={`text-gray-600 transition-transform ${
+                isProvinceOpen ? "rotate-180" : ""
+              }`}
+            />
+          </div>
+        )}
+
+        {/* Province Dropdown */}
+        {selectedProvince === "" && isProvinceOpen && (
           <div className="absolute mt-2 w-full bg-white shadow-lg rounded-md z-10 max-h-48 overflow-y-auto ring-1 ring-gray-300">
             <ul className="py-1 text-gray-700 text-sm">
-              {regions[selectedProvince].map((city, index) => (
+              {Object.keys(regions).map((province, index) => (
                 <li
                   key={index}
                   className="px-4 py-2 hover:bg-blue-500 hover:text-white cursor-pointer rounded-md transition-all"
-                  onClick={() => handleCitySelect(city)}
+                  onClick={() => handleProvinceSelect(province)}
                 >
-                  {city}
+                  {province}
                 </li>
               ))}
             </ul>
           </div>
         )}
-      </div>
-    )}
 
-    {/* Final Selected Result */}
-    {selectedProvince && selectedCity && (
-      <div className="flex items-center mt-4 bg-gray-200 rounded-md px-4 py-2 shadow-md">
-        <FaMapMarkerAlt className="text-red-500 text-lg mr-2" />
-        <span className="text-gray-800 font-semibold">{`${selectedCity}, ${selectedProvince}`}</span>
-      </div>
-    )}
-  </div>
-</div>
+        {/* City Dropdown */}
+        {selectedProvince && !selectedCity && (
+          <div className="relative mt-2">
+            <div
+              className="flex justify-between items-center bg-gray-200 rounded-md px-4 py-2 cursor-pointer shadow-md"
+              onClick={toggleCityDropdown}
+            >
+              <span className="text-gray-800 font-semibold">
+                {`Select City in ${selectedProvince}`}
+              </span>
+              <FaChevronDown
+                className={`text-gray-600 transition-transform ${
+                  isCityOpen ? "rotate-180" : ""
+                }`}
+              />
+            </div>
+            {isCityOpen && (
+              <div className="absolute mt-2 w-full bg-white shadow-lg rounded-md z-10 max-h-48 overflow-y-auto ring-1 ring-gray-300">
+                <ul className="py-1 text-gray-700 text-sm">
+                  {regions[selectedProvince].map((city, index) => (
+                    <li
+                      key={index}
+                      className="px-4 py-2 hover:bg-blue-500 hover:text-white cursor-pointer rounded-md transition-all"
+                      onClick={() => handleCitySelect(city)}
+                    >
+                      {city}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        )}
 
-
-        {/* Search Bar */}
-        <div className="flex items-center justify-center space-x-4 mt-6 w-full sm:w-[700px] mx-auto bg-gray-200 rounded-3xl shadow-md">
-          <input
-            type="text"
-            placeholder="Search Products here"
-            className="flex-grow px-4 py-3 bg-transparent outline-none text-gray-700 rounded-l-3xl text-sm sm:text-base"
-          />
-          <div className="flex items-center justify-center bg-gradient-to-r from-green-400 to-green-600 rounded-full p-3 cursor-pointer">
-            <FaSearchPlus className="text-white text-xl" />
+        {/* Final Selected Result */}
+        {selectedProvince && selectedCity && (
+          <div className="flex items-center mt-4 bg-gray-200 rounded-md px-4 py-2 shadow-md">
+            <FaMapMarkerAlt className="text-red-500 text-lg mr-2" />
+            <span className="text-gray-800 font-semibold">{`${selectedCity}, ${selectedProvince}`}</span>
           </div>
-        </div>
-
-        {/* Category Icons */}
-        <div className="flex items-center justify-center space-x-8 sm:space-x-16 mt-8 flex-wrap font-ralewayjjj">
-          <div className="flex flex-col items-center">
-            <FaCar className="text-white text-2xl sm:text-3xl" />
-            <span className="text-sm mt-2">Car</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <FaMobileAlt className="text-white text-2xl sm:text-3xl" />
-            <span className="text-sm mt-2">Mobile</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <FaCouch className="text-white text-2xl sm:text-3xl" />
-            <span className="text-sm mt-2">Property</span>
-          </div>
-          <div className="flex flex-col items-center">
-            <FaTv className="text-white text-2xl sm:text-3xl" />
-            <span className="text-sm mt-2">Academics</span>
-          </div>
-          {/* <div className="flex flex-col items-center">
-            <FaBicycle className="text-white text-2xl sm:text-3xl" />
-            <span className="text-sm mt-2">Bikes</span>
-          </div> */}
-        </div>
+        )}
       </div>
     </div>
-    <div className="py-8 bg-gray-50">
-      {/* Section Header */}
 
-      <div className="text-center mb-12">
-      <a href="#" className="text-gray-700 font-sans mx-7 font-semibold hover:underline">Products Listed in</a>
-
-        <h2 className="text-3xl font-bold font-helveticaLight text-gray-800">Popular Categories</h2>
+    {/* Search Bar */}
+    <div className="flex items-center justify-center space-x-4 mt-6 w-full sm:w-[700px] mx-auto bg-gray-200 rounded-3xl shadow-md">
+      <input
+        type="text"
+        placeholder="Search Products here"
+        className="flex-grow px-4 py-3 bg-transparent outline-none text-gray-700 rounded-l-3xl text-sm sm:text-base"
+      />
+      <div className="flex items-center justify-center bg-gradient-to-r from-green-400 to-green-600 rounded-full p-3 cursor-pointer">
+        <FaSearchPlus className="text-white text-xl" />
       </div>
+    </div>
 
-      {/* Category Cards */}
-      <Link to="/listing">
-      <div className="flex justify-center mt-12">
-  <div className="max-w-4xl grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:ml-36 ml-0">
-    {categories.map((category, index) => (
-      <div
-        key={index}
-        className="relative group transform transition-all duration-300 hover:scale-105"
-      >
-        {/* Dark overlay on hover */}
-        <div className="absolute inset-0 bg-black bg-opacity-40 rounded-2xl opacity-100 transition-opacity duration-300"></div>
-        
-        {/* Card Image */}
-        <img
-          src={category.image}
-          alt={category.name}
-          className="w-full h-72 object-cover rounded-2xl shadow-md group-hover:shadow-lg transition-shadow duration-300"
-        />
-        
-        {/* Category Name */}
-        <div className="absolute bottom-0 left-0 right-0 rounded-2xl p-4">
-          <h3 className="text-gray-100 text-lg sm:text-lg font-semibold font-raleway mb-1">
-            {category.name}
-          </h3>
-          <h3 className="text-gray-300 text-sm sm:text-sm font-semibold font-roboto">
-            {category.adds} Ads
-          </h3>
-        </div>
+    {/* Category Icons */}
+    <div className="flex items-center justify-center space-x-8 sm:space-x-16 mt-8 flex-wrap font-ralewayjjj">
+      <div className="flex flex-col items-center">
+        <FaCar className="text-white text-2xl sm:text-3xl" />
+        <span className="text-sm mt-2">Car</span>
       </div>
-    ))}
+      <div className="flex flex-col items-center">
+        <FaMobileAlt className="text-white text-2xl sm:text-3xl" />
+        <span className="text-sm mt-2">Mobile</span>
+      </div>
+      <div className="flex flex-col items-center">
+        <FaCouch className="text-white text-2xl sm:text-3xl" />
+        <span className="text-sm mt-2">Property</span>
+      </div>
+      <div className="flex flex-col items-center">
+        <FaTv className="text-white text-2xl sm:text-3xl" />
+        <span className="text-sm mt-2">Academics</span>
+      </div>
+    </div>
   </div>
 </div>
 
 
 
 
+    <div className="  max-w-7xl bg-white mx-auto">
+    <div className="mx-auto bg-white">
+  <div className="text-center  py-8">
+    <a
+      href="#"
+      className="text-gray-700 font-sans mx-7 font-semibold hover:underline"
+    >
+      Products Listed in
+    </a>
+    <h2 className="text-3xl font-bold font-helveticaLight text-gray-800">
+      Popular Categories
+    </h2>
+  </div>
+
+  <div className="py-8 px-4 sm:px-6 lg:px-20 flex justify-center">
+    {/* Category Cards */}
+    <Link to="/listing">
+      <div className="flex justify-center items-center mt-12">
+        {/* Grid for Categories */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-4 md:px-0">
+          {categories.map((category, index) => (
+            <div
+              key={index}
+              className="relative group transform transition-all duration-300 hover:scale-105 max-w-xs w-full mx-auto"
+            >
+              {/* Card Image */}
+              <img
+                src={category.image}
+                alt={category.name}
+                className="w-full h-80 object-cover rounded-2xl shadow-md group-hover:shadow-lg transition-shadow duration-300"
+              />
+
+              {/* Dark overlay on hover */}
+              <div className="absolute inset-0 bg-black bg-opacity-40 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              {/* Category Name and Ads */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent rounded-2xl">
+                <h3 className="text-gray-100 text-lg font-semibold font-raleway mb-1">
+                  {category.name}
+                </h3>
+                <h3 className="text-gray-300 text-sm font-semibold font-roboto">
+                  {category.adds} Ads
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Link>
+  </div>
+</div>
 
 
-</Link>
 
 
-
-
-
-
-
-
-      {/* Ads Section */}
-     
-    </div>
-    <div className="w-full mx-auto p-4 flex flex-wrap font-manrope font-semibold justify-center mt-8 sm:justify-between gap-4 ">
+<div className="w-full mx-auto p-6 flex flex-wrap justify-center gap-6 font-manrope font-semibold text-gray-800">
   {/* Mobiles Button */}
   <button
-    className={`flex items-center px-10 py-4 rounded-full shadow-lg transition-all duration-300 ease-in-out transform 
-    ${selected === 0 ? 'bg-gradient-to-r from-green-500 to-green-700 text-white scale-105' : 'bg-gray-100 text-gray-700 hover:shadow-md hover:from-gray-200 hover:to-gray-300'} 
+    className={`flex items-center px-12 py-4 rounded-full shadow-md transition-all duration-300 ease-in-out transform 
+    ${selected === 0 ? 'bg-gradient-to-r from-green-500 to-green-600 text-white scale-105 shadow-lg' : 'bg-white text-gray-700 hover:bg-gray-100 hover:shadow-lg'} 
     w-full sm:w-auto sm:max-w-xs`}
     onClick={() => handleClick(0)}
   >
-    <FontAwesomeIcon icon={faMobileAlt} className="mr-3 text-xl" />
-    <span className="text-base tracking-wide">Mobiles</span>
+    <FontAwesomeIcon icon={faMobileAlt} className="mr-3 text-xl text-green-500" />
+    <span className="text-lg tracking-wide">Mobiles</span>
   </button>
 
   {/* Cars Button */}
   <button
-    className={`flex items-center px-10 py-4 rounded-full shadow-lg transition-all duration-300 ease-in-out transform 
-    ${selected === 1 ? 'bg-gradient-to-r from-green-500 to-green-700 text-white scale-105' : 'bg-gray-100 text-gray-700 hover:shadow-md hover:from-gray-200 hover:to-gray-300'} 
+    className={`flex items-center px-12 py-4 rounded-full shadow-md transition-all duration-300 ease-in-out transform 
+    ${selected === 1 ? 'bg-gradient-to-r from-green-500 to-green-600 text-white scale-105 shadow-lg' : 'bg-white text-gray-700 hover:bg-gray-100 hover:shadow-lg'} 
     w-full sm:w-auto sm:max-w-xs`}
     onClick={() => handleClick(1)}
   >
-    <FontAwesomeIcon icon={faCar} className="mr-3 text-xl" />
-    <span className="text-base tracking-wide">Cars</span>
+    <FontAwesomeIcon icon={faCar} className="mr-3 text-xl text-green-500" />
+    <span className="text-lg tracking-wide">Cars</span>
   </button>
 
   {/* Properties Button */}
   <button
-    className={`flex items-center px-10 py-4 rounded-full shadow-lg transition-all duration-300 ease-in-out transform 
-    ${selected === 2 ? 'bg-gradient-to-r from-green-500 to-green-700 text-white scale-105' : 'bg-gray-100 text-gray-700 hover:shadow-md hover:from-gray-200 hover:to-gray-300'} 
+    className={`flex items-center px-12 py-4 rounded-full shadow-md transition-all duration-300 ease-in-out transform 
+    ${selected === 2 ? 'bg-gradient-to-r from-green-500 to-green-600 text-white scale-105 shadow-lg' : 'bg-white text-gray-700 hover:bg-gray-100 hover:shadow-lg'} 
     w-full sm:w-auto sm:max-w-xs`}
     onClick={() => handleClick(2)}
   >
-    <FontAwesomeIcon icon={faBuilding} className="mr-3 text-xl" />
-    <span className="text-base tracking-wide">Properties</span>
+    <FontAwesomeIcon icon={faBuilding} className="mr-3 text-xl text-green-500" />
+    <span className="text-lg tracking-wide">Properties</span>
   </button>
 
   {/* Academics Button */}
   <button
-    className={`flex items-center px-10 py-4 rounded-full shadow-lg transition-all duration-300 ease-in-out transform 
-    ${selected === 3 ? 'bg-gradient-to-r from-green-500 to-green-700 text-white scale-105' : 'bg-gray-100 text-gray-700 hover:shadow-md hover:from-gray-200 hover:to-gray-300'} 
+    className={`flex items-center px-12 py-4 rounded-full shadow-md transition-all duration-300 ease-in-out transform 
+    ${selected === 3 ? 'bg-gradient-to-r from-green-500 to-green-600 text-white scale-105 shadow-lg' : 'bg-white text-gray-700 hover:bg-gray-100 hover:shadow-lg'} 
     w-full sm:w-auto sm:max-w-xs`}
     onClick={() => handleClick(3)}
   >
-    <FontAwesomeIcon icon={faGraduationCap} className="mr-3 text-xl" />
-    <span className="text-base tracking-wide">Academics</span>
+    <FontAwesomeIcon icon={faGraduationCap} className="mr-3 text-xl text-green-500" />
+    <span className="text-lg tracking-wide">Academics</span>
   </button>
 </div>
+
 
 
     <div className="text-center mb-6 mt-6">
@@ -498,84 +493,99 @@ const Home = () => {
         <a href="#" className="text-green-700 font-sans mx-7 font-semibold hover:underline">Explore Whats New</a>
 
       </div>
-      <div className='w-full mx-auto p-4 xl:px-8 md:translate-y-[-20px] translate-y-[-0px]'>
-  <div className='md:flex justify-between items-center flex-auto mb-6'>
-    <h1 className='font-roboto font-bold text-2xl my-2 py-7 text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-black tracking-wide'>
+      <div className="w-full mx-auto p-4 xl:px-8 md:translate-y-[-20px] translate-y-[-0px]">
+  {/* Header Section */}
+  <div className="md:flex justify-between items-center flex-auto mb-6 max-w-7xl mx-auto">
+    <h1 className="font-roboto font-bold text-2xl my-2 py-7 text-transparent bg-clip-text bg-gradient-to-r from-gray-800 to-black tracking-wide">
       Mobiles for Sale
     </h1>
 
-    <button className='font-sans font-bold text-base bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-all duration-300 ease-in-out shadow-md'>
+    <button className="font-sans font-bold text-base bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-all duration-300 ease-in-out shadow-md">
       See More
     </button>
   </div>
 
-  <div className='relative'>
+  <div className="relative max-w-7xl mx-auto">
     {/* Left Scroll Button */}
     {!isLeftDisabled && (
       <button
-        className='absolute left-4 top-40 transform -translate-y-1/2 z-10 
+        className="absolute left-4 top-40 transform -translate-y-1/2 z-10 
                    text-black bg-white rounded-full shadow-lg 
                    w-12 h-12 flex items-center justify-center 
-                   hover:bg-gray-200 transition-all duration-300 ease-in-out'
-        onClick={() => scroll('left')}>
-        <FontAwesomeIcon icon={faChevronLeft} className='text-xl' />
+                   hover:bg-gray-200 transition-all duration-300 ease-in-out"
+        onClick={() => scroll("left")}
+      >
+        <FontAwesomeIcon icon={faChevronLeft} className="text-xl" />
       </button>
     )}
 
-    <div ref={carouselRef} className='flex overflow-x-hidden snap-x snap-mandatory'>
+    {/* Products Section */}
+    <div
+      ref={carouselRef}
+      className="flex overflow-x-hidden snap-x snap-mandatory justify-center"
+    >
       {products.map((property, index) => (
-        <div key={index} className='flex-shrink-0 w-full sm:w-1/2 md:w-1/4 p-3 snap-center'>
-          <div className='bg-gradient-to-r from-gray-100 to-gray-100 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 relative'>
+        <div
+          key={index}
+          className="flex-shrink-0 w-full sm:w-1/2 md:w-1/4 p-3 snap-center"
+        >
+          <div className="bg-gradient-to-r from-gray-100 to-gray-100 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 relative">
             <img
               src={property.image}
-              className='object-cover w-full h-80 cursor-pointer transition-transform duration-300 transform hover:scale-105'
-              alt='Property'
+              className="object-cover w-full h-80 cursor-pointer transition-transform duration-300 transform hover:scale-105"
+              alt="Property"
             />
-            <div className='p-6'>
-              <div className='font-sans font-semibold my-3'>
-                <h1 className='text-lg text-green-700'>{property.name}</h1>
-                {/* Displaying the company name under the product name */}
-                <h3 className='text-sm text-gray-600'>{property.company}</h3>
+            <div className="p-6">
+              <div className="font-sans font-semibold my-3">
+                <h1 className="text-lg text-green-700">{property.name}</h1>
+                <h3 className="text-sm text-gray-600">{property.company}</h3>
               </div>
-              <div className='location flex items-center'>
-                <FontAwesomeIcon icon={faLocationDot} className='text-[14px] text-gray-500' />
-                <h3 className='ml-2 text-gray-700'>{property.location}</h3>
+              <div className="location flex items-center">
+                <FontAwesomeIcon
+                  icon={faLocationDot}
+                  className="text-[14px] text-gray-500"
+                />
+                <h3 className="ml-2 text-gray-700">{property.location}</h3>
               </div>
-              <div className='details font-montserrat text-[14px] text-gray-500 mt-2'>
+              <div className="details font-montserrat text-[14px] text-gray-500 mt-2">
                 {property.details}
               </div>
 
-              {/* Price and Heart Icon */}
               <div className="h-[1px] w-full bg-gray-200"></div>
-        
-              <div className='flex justify-between items-center mt-6'>
 
-             
-              <div className='price-location flex items-center justify-between w-full'>
-                
-  {/* Smaller Price */}
-  <div className='flex flex-col items-start'>
-    <h4 className='font-helveticaLight text-sm text-gray-500'>{property.discountPrice}</h4> {/* Smaller price */}
-  </div>
+              {/* Price and Heart Icon */}
+              <div className="flex justify-between items-center mt-6">
+                <div className="price-location flex items-center justify-between w-full">
+                  <div className="flex flex-col items-start">
+                    <h4 className="font-helveticaLight text-sm text-gray-500">
+                      {property.discountPrice}
+                    </h4>
+                  </div>
 
-  {/* Main Price */}
-  <h3 className='font-semibold font-helveticaLight text-lg'>{property.price}</h3>
+                  <h3 className="font-semibold font-helveticaLight text-lg">
+                    {property.price}
+                  </h3>
 
-  {/* Heart icon next to the price */}
-  <div
-    className={`flex items-center justify-center w-10 h-10 rounded-full group cursor-pointer ml-20 
-                ${favorites[index] ? 'bg-red-500' : 'bg-gray-300'} transition-all duration-300`}>
-    <FontAwesomeIcon icon={faHeartCirclePlus} className={`text-${favorites[index] ? 'white' : 'red-500'} text-[18px] group-hover:text-white`} />
-  </div>
-</div>
-
-
-
+                  <div
+                    className={`flex items-center justify-center w-10 h-10 rounded-full group cursor-pointer ml-20 
+                                ${
+                                  favorites[index]
+                                    ? "bg-red-500"
+                                    : "bg-gray-300"
+                                } transition-all duration-300`}
+                  >
+                    <FontAwesomeIcon
+                      icon={faHeartCirclePlus}
+                      className={`text-${
+                        favorites[index] ? "white" : "red-500"
+                      } text-[18px] group-hover:text-white`}
+                    />
+                  </div>
+                </div>
               </div>
 
-              {/* Contact Button */}
-              <div className='mt-6'>
-                <button className='font-bold text-base bg-green-800 text-white px-6 py-3 rounded-lg font-raleway hover:bg-green-600 transition-all duration-300 ease-in-out shadow-md w-full'>
+              <div className="mt-6">
+                <button className="font-bold text-base bg-green-800 text-white px-6 py-3 rounded-lg font-raleway hover:bg-green-600 transition-all duration-300 ease-in-out shadow-md w-full">
                   Contact
                 </button>
               </div>
@@ -587,15 +597,17 @@ const Home = () => {
 
     {/* Right Scroll Button */}
     <button
-      className='absolute right-4 top-40 transform -translate-y-1/2 z-10 
+      className="absolute right-4 top-40 transform -translate-y-1/2 z-10 
                  text-black bg-white rounded-full shadow-lg 
                  w-12 h-12 flex items-center justify-center 
-                 hover:bg-gray-200 transition-all duration-300 ease-in-out'
-      onClick={() => scroll('right')}>
-      <FontAwesomeIcon icon={faChevronRight} className='text-xl' />
+                 hover:bg-gray-200 transition-all duration-300 ease-in-out"
+      onClick={() => scroll("right")}
+    >
+      <FontAwesomeIcon icon={faChevronRight} className="text-xl" />
     </button>
   </div>
 </div>
+
 
 
 
@@ -608,7 +620,7 @@ const Home = () => {
 
 
 <div className='w-full mx-auto p-4 xl:px-8 md:translate-y-[-50px] translate-y-[-0px]'>
-  <div className='md:flex justify-between items-center flex-auto mb-4'>
+  <div className='md:flex justify-between items-center flex-auto mb-6 max-w-7xl mx-auto'>
     <h1 className='font-roboto font-bold text-2xl my-2 py-7 text-gray-800'>Properties for Sale</h1>
    
     <button className='font-sans font-bold text-base bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-all duration-300 ease-in-out shadow-md'>
@@ -616,7 +628,7 @@ const Home = () => {
     </button>
   </div>
 
-  <div className='relative'>
+  <div className='relative max-w-7xl mx-auto'>
     {/* Left Scroll Button */}
     {!isLeftDisabledproperty && (
       <button
@@ -713,7 +725,7 @@ const Home = () => {
 
 
 <div className='w-full mx-auto p-4 xl:px-8 md:translate-y-[-50px] translate-y-[-0px]'>
-  <div className='md:flex justify-between items-center flex-auto mb-4'>
+  <div className='md:flex justify-between items-center flex-auto mb-6 max-w-7xl mx-auto'>
     <h1 className='font-roboto font-bold text-2xl my-2 py-7 text-gray-800'>Cars for Sale</h1>
    
     <button className='font-sans font-bold text-base bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-all duration-300 ease-in-out shadow-md'>
@@ -721,7 +733,7 @@ const Home = () => {
     </button>
   </div>
 
-  <div className='relative'>
+  <div className='relative max-w-7xl mx-auto'>
     {/* Left Scroll Button */}
     {!isLeftDisabledcars && (
       <button
@@ -815,6 +827,7 @@ const Home = () => {
 </div>
 
 <Popular/>
+</div>
 <Footer/>
     </div>
   )
