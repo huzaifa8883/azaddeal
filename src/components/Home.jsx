@@ -203,7 +203,7 @@ const Home = () => {
   style={{ backgroundImage: `url('https://cdn.dribbble.com/users/5324991/screenshots/20449197/dribbble_shot_1_4x.png') `}}
 >
   {/* Green Gradient Overlay */}
-  <div className="absolute inset-0 bg-gradient-to-r from-[#020703] via-[#04270d] to-[#010c03] opacity-95"></div>
+  <div className="absolute inset-0 bg-gradient-to-r from-[#020703] via-[#083b16] to-[#010c03]  opacity-95"></div>
 
   <header className="absolute top-0 left-0 w-full text-white">
     <div className="container mx-auto px-4 py-4 flex justify-between items-center flex-col sm:flex-row">
@@ -384,8 +384,8 @@ const Home = () => {
 
 
 
-    <div className="  max-w-7xl bg-white mx-auto">
-    <div className="mx-auto bg-white">
+    <div className="  max-w-7xl mx-auto bg-white ">
+    <div className=" bg-white  mx-auto">
   <div className="text-center  py-8">
     <a
       href="#"
