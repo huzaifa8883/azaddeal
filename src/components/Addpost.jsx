@@ -46,7 +46,7 @@ const Textarea = ({ placeholder, ...props }) => (
 
 // PostAdPage Component
 const PostAdPage = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Mobiles");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [images, setImages] = useState([]);
   const [video, setVideo] = useState(null);
   const [selectedImageIndexes, setSelectedImageIndexes] = useState({});
@@ -168,7 +168,11 @@ const PostAdPage = () => {
       <CardContent>
         <form className="space-y-8">
           {/* Upload Images */}
-          <div className="border p-6 rounded-md bg-gray-100">
+    
+          {selectedCategory === "Mobiles" && (
+              <>
+                {/* Mobile Brand */}
+                <div className="border p-6 rounded-md bg-gray-100">
             <label className="block mb-3 font-semibold text-gray-800">Title Image</label>
             <div className="flex flex-col items-center gap-6">
               <div className="flex items-center gap-4">
@@ -302,9 +306,6 @@ const PostAdPage = () => {
               <option value="Islamabad">Islamabad</option>
             </Select>
           </div>
-          {selectedCategory === "Mobiles" && (
-              <>
-                {/* Mobile Brand */}
                 <div className="font-raleway">
                 <div className="mb-4">
                   <label htmlFor="brand" className="block text-lg font-helveticaLight text-black mb-2">Mobile Brand</label>
@@ -375,12 +376,148 @@ const PostAdPage = () => {
   </div>
   </div>
 
-
+  <Button className="w-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 p-4 rounded-lg font-bold shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+  Post Ad
+</Button> 
               </>
             )}
           {/* Submit */}
           {selectedCategory === "Cars" && (
 <>
+<div className="border p-6 rounded-md bg-gray-100">
+            <label className="block mb-3 font-semibold text-gray-800">Title Image</label>
+            <div className="flex flex-col items-center gap-6">
+              <div className="flex items-center gap-4">
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={handleFileUploadd}
+                  className="hidden"
+                  id="image-upload"
+                />
+                <label
+                  htmlFor="image-upload"
+                  className="cursor-pointer flex items-center gap-2 bg-blue-600 text-white hover:bg-blue-700 p-3 rounded-lg shadow-md transition-all"
+                >
+                  <FiUpload size={20} /> Title Image
+                </label>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mt-4">
+                {selectedImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className="relative border rounded-lg overflow-hidden shadow-md"
+                  >
+                    <img
+                      src={image.preview}
+                      alt={`Uploaded ${index}`}
+                      className="w-full h-40 object-cover"
+                    />
+                    <button
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 text-xs shadow-md hover:bg-red-600"
+                      onClick={() => handleRemoveImage(index)}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 flex gap-4 overflow-x-auto">
+  {cameraImages.map((image, index) => (
+    <div
+      key={index}
+      className="relative cursor-pointer border-2 border-gray-300 rounded-md overflow-hidden"
+      onClick={() => document.getElementById(`image-input-${index}`).click()}
+    >
+      {/* Camera Image */}
+      <img
+        src={image}
+        alt={`Camera ${index + 1}`}
+        className="md:h-16 md:w-16 h-8 w-8 object-cover"
+      />
+
+      {/* File Input for Upload */}
+      <input
+        type="file"
+        accept="image/*"
+        className="hidden"
+        id={`image-input-${index}`}
+        onChange={(e) => {
+          if (e.target.files && e.target.files[0]) {
+            const uploadedImage = URL.createObjectURL(e.target.files[0]);
+            handleImageSelect(uploadedImage, index); // Pass the uploaded image and index
+          }
+        }}
+      />
+
+      {/* Overlay Selected Image */}
+      {selectedImageIndexes[index] && (
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <img
+            src={selectedImageIndexes[index]}
+            alt="Selected Overlay"
+            className="h-16 w-16 object-cover border-2 border-blue-500 rounded-md"
+          />
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
+
+
+          {/* Upload Video */}
+          <div >
+            <label className="block mb-3 font-semibold text-gray-800">Upload Video</label>
+            <input
+              type="file"
+              accept="video/*"
+              onChange={handleVideoChange}
+              className="hidden"
+              id="video-upload"
+            />
+            <label
+              htmlFor="video-upload"
+              className="cursor-pointer flex items-center gap-2 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 p-3 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+              >
+              <FiUpload size={20} /> Upload Video
+            </label>
+            {video && (
+              <div className="mt-4">
+                <video
+                  src={URL.createObjectURL(video)}
+                  controls
+                  className="w-full h-64 rounded-md shadow-lg"
+                />
+              </div>
+            )}
+          </div>
+  
+          {/* Ad Title */}
+          <div>
+            <label className="block mb-3 font-semibold text-gray-800">Ad Title*</label>
+            <Input type="text" placeholder="Mention the key features of your item" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+  
+          {/* Description */}
+          <div>
+            <label className="block mb-3 font-semibold text-gray-800">Description*</label>
+            <Textarea placeholder="Describe the item you’re selling. Include condition, features, and reason for selling." className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+  
+          {/* Location */}
+          <div>
+            <label className="block mb-3 font-semibold font-helveticaLight text-gray-800">Location*</label>
+            <Select className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">Select Location</option>
+              <option value="Karachi">Karachi</option>
+              <option value="Lahore">Lahore</option>
+              <option value="Islamabad">Islamabad</option>
+            </Select>
+          </div>
 <div className="mb-4">
     <label htmlFor="carMake" className="block text-lg font-roboto mb-2">Car Make</label>
     <select
@@ -591,12 +728,148 @@ const PostAdPage = () => {
   </div>
 
 
-
+  <Button className="w-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 p-4 rounded-lg font-bold shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+  Post Ad
+</Button> 
 </>
           )}
 
 {selectedCategory === "Properties" && (
   <>
+        <div className="border p-6 rounded-md bg-gray-100">
+            <label className="block mb-3 font-semibold text-gray-800">Title Image</label>
+            <div className="flex flex-col items-center gap-6">
+              <div className="flex items-center gap-4">
+                <input
+                  type="file"
+                  multiple
+                  accept="image/*"
+                  onChange={handleFileUploadd}
+                  className="hidden"
+                  id="image-upload"
+                />
+                <label
+                  htmlFor="image-upload"
+                  className="cursor-pointer flex items-center gap-2 bg-blue-600 text-white hover:bg-blue-700 p-3 rounded-lg shadow-md transition-all"
+                >
+                  <FiUpload size={20} /> Title Image
+                </label>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 mt-4">
+                {selectedImages.map((image, index) => (
+                  <div
+                    key={index}
+                    className="relative border rounded-lg overflow-hidden shadow-md"
+                  >
+                    <img
+                      src={image.preview}
+                      alt={`Uploaded ${index}`}
+                      className="w-full h-40 object-cover"
+                    />
+                    <button
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 text-xs shadow-md hover:bg-red-600"
+                      onClick={() => handleRemoveImage(index)}
+                    >
+                      ✕
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="mt-4 flex gap-4 overflow-x-auto">
+  {cameraImages.map((image, index) => (
+    <div
+      key={index}
+      className="relative cursor-pointer border-2 border-gray-300 rounded-md overflow-hidden"
+      onClick={() => document.getElementById(`image-input-${index}`).click()}
+    >
+      {/* Camera Image */}
+      <img
+        src={image}
+        alt={`Camera ${index + 1}`}
+        className="md:h-16 md:w-16 h-8 w-8 object-cover"
+      />
+
+      {/* File Input for Upload */}
+      <input
+        type="file"
+        accept="image/*"
+        className="hidden"
+        id={`image-input-${index}`}
+        onChange={(e) => {
+          if (e.target.files && e.target.files[0]) {
+            const uploadedImage = URL.createObjectURL(e.target.files[0]);
+            handleImageSelect(uploadedImage, index); // Pass the uploaded image and index
+          }
+        }}
+      />
+
+      {/* Overlay Selected Image */}
+      {selectedImageIndexes[index] && (
+        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <img
+            src={selectedImageIndexes[index]}
+            alt="Selected Overlay"
+            className="h-16 w-16 object-cover border-2 border-blue-500 rounded-md"
+          />
+        </div>
+      )}
+    </div>
+  ))}
+</div>
+
+
+
+          {/* Upload Video */}
+          <div >
+            <label className="block mb-3 font-semibold text-gray-800">Upload Video</label>
+            <input
+              type="file"
+              accept="video/*"
+              onChange={handleVideoChange}
+              className="hidden"
+              id="video-upload"
+            />
+            <label
+              htmlFor="video-upload"
+              className="cursor-pointer flex items-center gap-2 bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-700 p-3 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+              >
+              <FiUpload size={20} /> Upload Video
+            </label>
+            {video && (
+              <div className="mt-4">
+                <video
+                  src={URL.createObjectURL(video)}
+                  controls
+                  className="w-full h-64 rounded-md shadow-lg"
+                />
+              </div>
+            )}
+          </div>
+  
+          {/* Ad Title */}
+          <div>
+            <label className="block mb-3 font-semibold text-gray-800">Ad Title*</label>
+            <Input type="text" placeholder="Mention the key features of your item" className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+  
+          {/* Description */}
+          <div>
+            <label className="block mb-3 font-semibold text-gray-800">Description*</label>
+            <Textarea placeholder="Describe the item you’re selling. Include condition, features, and reason for selling." className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+  
+          {/* Location */}
+          <div>
+            <label className="block mb-3 font-semibold font-helveticaLight text-gray-800">Location*</label>
+            <Select className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option value="">Select Location</option>
+              <option value="Karachi">Karachi</option>
+              <option value="Lahore">Lahore</option>
+              <option value="Islamabad">Islamabad</option>
+            </Select>
+          </div>
     <div className="property-form">
       
       {/* Property Type */}
@@ -698,13 +971,14 @@ const PostAdPage = () => {
    
       
     </div>
+    <Button className="w-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 p-4 rounded-lg font-bold shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
+  Post Ad
+</Button> 
   </>
 )}
 
 
-<Button className="w-full bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white hover:from-blue-600 hover:via-blue-700 hover:to-blue-800 p-4 rounded-lg font-bold shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
-  Post Ad
-</Button>
+
         </form>
       </CardContent>
     </Card>
