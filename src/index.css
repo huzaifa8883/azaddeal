@@ -1,3 +1,131 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    input[type="range"] {
+      @apply appearance-none bg-gray-200 h-2 rounded-lg;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      @apply appearance-none w-4 h-4 bg-blue-600 rounded-full cursor-pointer transition-all duration-200 hover:bg-blue-700 hover:shadow-lg;
+    }
+    
+    input[type="range"]::-moz-range-thumb {
+      @apply appearance-none w-4 h-4 bg-blue-600 rounded-full cursor-pointer transition-all duration-200 hover:bg-blue-700 hover:shadow-lg;
+    }
+  }
+
+  @keyframes ping {
+    75%, 100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+  .animate-ping {
+    animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  }
+
+/* Overall Container */
+.property-form {
+  background-color: #ffffff; /* Clean white background for a polished look */
+  padding: 50px; /* Generous padding for spacious feel */
+  border-radius: 16px; /* Softer rounded corners */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* Stronger shadow for depth */
+  max-width: 750px; /* Adjusted max-width for balance */
+  margin: 60px auto; /* Centered with extra spacing on top */
+  font-family: 'Roboto', sans-serif; /* Professional and modern font */
+}
+
+/* Section Labels */
+.section-label, 
+.button-section-title, 
+h1.section-label {
+  font-size: 24px; /* Larger font size for emphasis */
+  font-weight: 700; /* Stronger font weight */
+  margin-top: 40px; /* More spacing above */
+  margin-bottom: 25px; /* More spacing below */
+  color: #1a202c; /* Richer dark color for readability */
+  text-align: center; /* Unified centered alignment */
+}
+
+/* Buttons Group */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px; /* Consistent spacing between buttons */
+  justify-content: center; /* Center align buttons */
+}
+
+.button-style {
+  flex: 1 1 30%;
+  padding: 16px; /* Larger button for better interaction */
+  border: 2px solid #e2e8f0; /* Softer border */
+  background-color: #f7fafc; /* Subtle light background */
+  color: #2d3748; /* Dark text for contrast */
+  cursor: pointer;
+  border-radius: 12px; /* Rounded corners for consistency */
+  font-size: 16px;
+  font-weight: 500; /* Medium font weight for balance */
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.button-style:hover {
+  background-color: #edf2f7; /* Slightly darker background */
+  border-color: #a0aec0; /* Highlight border */
+  color: #1a202c; /* Darker text for hover effect */
+}
+
+.button-style.selected {
+  background: linear-gradient(90deg, #6b46c1, #805ad5); /* Eye-catching gradient */
+  color: #ffffff; /* White text for contrast */
+  border-color: #805ad5;
+}
+
+/* Input Fields */
+.area-size-group {
+  display: flex;
+  gap: 24px; /* Consistent spacing between inputs */
+  margin-top: 25px;
+  justify-content: center; /* Center align inputs */
+}
+
+.area-input,
+.unit-select {
+  padding: 14px 18px; /* Balanced padding */
+  border: 2px solid #e2e8f0; /* Subtle border */
+  border-radius: 12px; /* Consistent rounded corners */
+  font-size: 16px;
+  font-weight: 400; /* Regular weight for balance */
+  color: #4a5568; /* Neutral text color */
+  background-color: #f7fafc; /* Light input background */
+  transition: border-color 0.3s ease; /* Smooth focus effect */
+}
+
+.area-input:focus,
+.unit-select:focus {
+  outline: none;
+  border-color: #667eea; /* Brand color for focus */
+  background-color: #ffffff; /* Clean white background on focus */
+}
+
+/* Button Section */
+.button-section {
+  flex: 1;
+  margin-bottom: 30px; /* Spacing for better layout */
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px; /* Consistent gap between rows */
+  justify-content: center; /* Center align buttons */
+}
+
+/* Headings */
+h1.section-label {
+  font-size: 28px; /* Larger size for main heading */
+  color: #2c5282; /* Deep blue for standout headings */
+  margin-top: 60px;
+  margin-bottom: 35px;
+}

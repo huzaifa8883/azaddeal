@@ -384,7 +384,7 @@ const Home = () => {
 
 
 
-    <div className="  max-w-7xl mx-auto bg-white ">
+    <div className="  max-w-[1400px] mx-auto bg-white ">
     <div className=" bg-white  mx-auto">
   <div className="text-center  py-8">
     <a

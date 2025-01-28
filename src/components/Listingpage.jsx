@@ -1,11 +1,13 @@
 
 import React, { useState, useEffect, useCallback,useRef } from 'react';
 import cities from '../cites';
+
+import Userprofile from "./Userprofile";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLocationDot, faAngleDown ,faPhone,faComments,faHeart,faTimes,faSearch,faHeartCirclePlus,faFilter} from '@fortawesome/free-solid-svg-icons';
 import Footer from '../Footer';
 import { faBars, faTh } from '@fortawesome/free-solid-svg-icons'
-import { FaCar, FaMobileAlt, FaHome } from 'react-icons/fa'; // Importing icons
+import { FaCar, FaMobileAlt, FaHome,FaSearch, FaCommentDots, FaBell, FaPlus,FaMapMarkerAlt  } from 'react-icons/fa'; // Importing icons
 // Unique and popular cities
 const uniqueCities = Array.from(new Set(cities));
 const popularCities = ['Karachi', 'Lahore', 'Islamabad', 'Faisalabad', 'Rawalpindi', 'Multan'];
@@ -285,10 +287,11 @@ const Listingpage = () => {
   const [urgent, setUrgent] = useState(false);
   const [selectedState, setSelectedState] = useState("");
   const [cities, setCities] = useState([]);
-  
+  const [searchQuery, setSearchQuery] = useState('');
+
   const observerRef = useRef(null);
   const stateOptions = ['Punjab', 'Sindh', 'Balochistan', 'KPK', 'Gilgit-Baltistan'];
-  
+
   // Handle state selection
 
   const handleStateChange = (event) => {
@@ -470,7 +473,7 @@ useEffect(() => {
               <FaCar className="inline-block mr-2 text-blue-500" />
               Car Specifications
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-sans font-semibold">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-roboto ">
               <div className="flex flex-col">
                 <label htmlFor="car-manufacture-year" className="text-sm font-sans text-gray-700 mb-1">
                   Manufacture Year
@@ -557,7 +560,7 @@ useEffect(() => {
               <FaMobileAlt className="inline-block mr-2 text-blue-500" />
               Mobile Specifications
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-semibold font-sans">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-roboto">
               <div className="flex flex-col">
                 <label htmlFor="mobile-brand" className="text-sm font-sans text-gray-700 mb-1">
                   Brand
@@ -634,7 +637,7 @@ useEffect(() => {
               <FaHome className="inline-block mr-2 text-blue-500" />
               Property Specifications
             </label>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-semibold font-sans">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 font-roboto">
               <div className="flex flex-col">
                 <label htmlFor="property-type" className="text-sm font-sans text-gray-700 mb-1">
                   Property Type
@@ -736,296 +739,483 @@ useEffect(() => {
     </svg>
   </button>
 </div> */}
+ {/* <div className="bg-gray-50 py-1.5 px-4 text-xs text-gray-600 hidden md:block border-b">
+        <div className="max-w-7xl mx-auto flex justify-between">
+          <span>{new Date().toLocaleString('en-US', { 
+            year: 'numeric', 
+            month: '2-digit', 
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false 
+          })}</span>
+          <span>Welcome, huzaifa8883</span>
+        </div>
+      </div> */}
 
+      {/* Main Header */}
+      <header className="bg-gradient-to-r from-slate-800 to-slate-900 shadow-lg sticky top-0 z-50 font-roboto">
+  <div className="max-w-7xl mx-auto px-4 h-20">
+    <div className="flex items-center justify-between h-full gap-4">
+      {/* Logo */}
+     
 
+      {/* Location Dropdown */}
+      <div className="relative min-w-[180px]">
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+          <FaMapMarkerAlt size={16} />
+        </div>
+        <select className="w-full h-12 pl-9 pr-8 appearance-none bg-slate-700/50 border border-slate-600 
+                         rounded-md text-sm text-gray-200 font-medium focus:outline-none 
+                         focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 cursor-pointer">
+          <option value="">Select Province</option>
+          <option value="punjab">Punjab</option>
+          <option value="sindh">Sindh</option>
+          <option value="kpk">Khyber Pakhtunkhwa</option>
+          <option value="balochistan">Balochistan</option>
+          <option value="gilgit">Gilgit-Baltistan</option>
+          <option value="ajk">Azad Kashmir</option>
+        </select>
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </div>
+      </div>
 
-<div className="grid grid-cols-1 md:grid-cols-4 gap-8 mx-auto my-10 w-full overflow-x-hidden">
+      {/* Search Bar */}
+      <div className="flex-1 flex max-w-2xl">
+        <div className="relative flex-1">
+          <input
+            type="text"
+            placeholder="Find Cars, Mobile Phones and more..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full h-12 pl-4 pr-4 rounded-l-md border border-slate-600 
+                     bg-slate-700/50 text-gray-200 placeholder-gray-400
+                     focus:outline-none focus:ring-2 focus:ring-blue-500/20 
+                     focus:border-blue-400 text-sm"
+          />
+        </div>
+        <button className="px-8 bg-blue-500 hover:bg-blue-600 text-white rounded-r-md
+                         transition-all duration-200 flex items-center justify-center">
+          <FaSearch size={18} />
+        </button>
+      </div>
+
+      {/* Right Section */}
+      <div className="flex items-center gap-6">
+        {/* Language Selector */}
+        <select className="text-sm text-gray-300 bg-transparent border-none 
+                         focus:ring-0 cursor-pointer hidden md:block">
+          <option value="en">English</option>
+          <option value="ur">اردو</option>
+        </select>
+
+        {/* Action Buttons */}
+        <div className="flex items-center gap-4">
+          <button className="p-2.5 text-gray-300 hover:text-blue-400 transition-colors relative">
+            <FaCommentDots size={22} />
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 rounded-full 
+                           text-white text-xs flex items-center justify-center animate-pulse">3</span>
+          </button>
+
+          <button className="p-2.5 text-gray-300 hover:text-blue-400 transition-colors relative">
+            <FaBell size={22} />
+            <span className="absolute -top-1 -right-1 w-5 h-5 bg-blue-500 rounded-full 
+                           text-white text-xs flex items-center justify-center animate-pulse">5</span>
+          </button>
+
+          <Userprofile
+            userImage="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-PIqzX1p7ueIQSi5p29gEtEf165sYb_DhWw&s"
+            userName={`${new Date().toLocaleDateString()} - huzaifa8883`}
+          />
+
+          <button className="flex items-center gap-2 px-6 py-3 bg-blue-500 text-white 
+                           rounded-md hover:bg-blue-600 transition-all duration-200 
+                           shadow-lg hover:shadow-blue-500/20">
+            <FaPlus size={16} />
+            <span className="font-medium text-sm">SELL</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<div className="max-w-[2000px] mx-auto px-4 sm:px-6 lg:px-8"> {/* Added container with max-width */}
+
+<div className="grid grid-cols-1 md:grid-cols-4 gap-8 mx-auto my-10  overflow-x-hidden">
   {/* Filter Section */}
-  <div className="relative bg-white/30 backdrop-blur-xl rounded-3xl p-8 shadow-2xl transition-transform duration-500 hover:shadow-3xl border border-gray-200 border-t-2 border-l-2 mx-auto max-w-4xl">
-    <h2 className="font-sans text-3xl md:text-4xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 animate-gradient">
+  <div className="relative font-roboto bg-white rounded-3xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-gray-100">
+  {/* Header with Icon */}
+  <div className="flex items-center mb-8 pb-4 border-b border-gray-100">
+    <div className="p-3 bg-gradient-to-tr from-blue-600 to-blue-800 rounded-xl shadow-blue-500/30 shadow-lg mr-4">
+      <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+      </svg>
+    </div>
+    <h2 className="text-2xl font-bold text-gray-800">
       Filters
+      <span className="block text-sm font-normal text-gray-500 mt-1">Customize your search</span>
     </h2>
-    <div className="mb-6">
-      <label className="text-lg font-semibold text-gray-800">Category</label>
+  </div>
+
+  {/* Filter Groups */}
+  <div className="space-y-6">
+    {/* Category Selection */}
+    <div className="filter-group">
+      <label className="inline-block text-sm font-medium text-gray-700 mb-2 bg-gray-50 px-3 py-1 rounded-full">
+        Category
+      </label>
       <select
         value={selectedCategory}
         onChange={handleCategoryChange}
-        className="mt-3 p-3 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-md transition-all duration-300 hover:bg-blue-50/90 hover:border-blue-400 hover:shadow-lg"
+        className="w-full h-11 px-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring focus:ring-blue-200 transition-all duration-200 bg-white cursor-pointer hover:border-blue-400 text-gray-600"
       >
-        <option value="mobiles">Mobiles</option>
-        <option value="cars">Cars</option>
-        <option value="properties">Properties</option>
+        <option value="mobiles">📱 Mobiles</option>
+        <option value="cars">🚗 Cars</option>
+        <option value="properties">🏠 Properties</option>
       </select>
     </div>
 
     {/* Sort Options */}
-    <div className="mb-6">
-      <label className="text-lg font-semibold text-gray-800">Sort By</label>
+    <div className="filter-group">
+      <label className="inline-block text-sm font-medium text-gray-700 mb-2 bg-gray-50 px-3 py-1 rounded-full">
+        Sort By
+      </label>
       <select
         value={sortOption}
         onChange={handleSortChange}
-        className="mt-3 p-3 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-md transition-all duration-300 hover:bg-blue-50/90 hover:border-blue-400 hover:shadow-lg"
+        className="w-full h-11 px-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring focus:ring-blue-200 transition-all duration-200 bg-white cursor-pointer hover:border-blue-400 text-gray-600"
       >
-        <option value="default" disabled>Select</option>
-        <option value="asc">Price: Low to High</option>
-        <option value="desc">Price: High to Low</option>
-        <option value="popular">Most Popular</option>
+        <option value="default" disabled>Select sorting option</option>
+        <option value="asc">💰 Price: Low to High</option>
+        <option value="desc">💎 Price: High to Low</option>
+        <option value="popular">🔥 Most Popular</option>
       </select>
     </div>
 
-    {/* State Selection */}
-    <div className="mb-6">
-      <h2 className="text-xl font-semibold text-gray-700">Select State and City</h2>
+    {/* Location Selection */}
+    <div className="filter-group bg-gray-50 p-4 rounded-2xl">
+      <h3 className="text-sm font-semibold text-gray-800 mb-4 flex items-center">
+        <svg className="w-4 h-4 mr-2 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+        Location
+      </h3>
+      
       {/* State Selector */}
-      <label htmlFor="state" className="block mt-4 text-gray-600">State</label>
-      <select
-        id="state"
-        value={selectedState}
-        onChange={handleStateChange}
-        className="mt-3 p-3 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-md transition-all duration-300 hover:bg-blue-50/90 hover:border-blue-400 hover:shadow-lg"
-      >
-        <option value="">Select a State</option>
-        {Object.keys(statesWithCities).map((state) => (
-          <option key={state} value={state}>{state}</option>
-        ))}
-      </select>
+      <div className="mb-3">
+        <select
+          id="state"
+          value={selectedState}
+          onChange={handleStateChange}
+          className="w-full h-11 px-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring focus:ring-blue-200 transition-all duration-200 bg-white cursor-pointer hover:border-blue-400 text-gray-600"
+        >
+          <option value="">Select State</option>
+          {Object.keys(statesWithCities).map((state) => (
+            <option key={state} value={state}>{state}</option>
+          ))}
+        </select>
+      </div>
 
       {/* City Selector */}
-      <label htmlFor="city" className="block mt-4 text-gray-600">City</label>
       <select
         id="city"
-        className="mt-3 p-3 border border-gray-300 rounded-full w-full focus:outline-none focus:ring-4 focus:ring-blue-400 shadow-md transition-all duration-300 hover:bg-blue-50/90 hover:border-blue-400 hover:shadow-lg"
+        className="w-full h-11 px-4 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring focus:ring-blue-200 transition-all duration-200 bg-white cursor-pointer hover:border-blue-400 text-gray-600 disabled:bg-gray-100 disabled:cursor-not-allowed"
         disabled={!selectedState}
       >
-        <option value="">Select a City</option>
+        <option value="">Select City</option>
         {cities.map((city) => (
           <option key={city} value={city}>{city}</option>
         ))}
       </select>
     </div>
 
-    <div className="mt-4 flex items-center space-x-6">
-      <div className="flex items-center">
-        <input
-          type="checkbox"
-          id="featured"
-          className="h-4 w-4 text-blue-600 focus:ring-blue-500"
-        />
-        <label htmlFor="featured" className="ml-2 text-lg font-bold text-gray-700">
-          Featured
+    {/* Quick Filters */}
+    <div className="filter-group">
+      <label className="inline-block text-sm font-medium text-gray-700 mb-3 bg-gray-50 px-3 py-1 rounded-full">
+        Quick Filters
+      </label>
+      <div className="grid grid-cols-2 gap-4">
+        <label className="flex items-center p-3 border border-gray-200 rounded-xl cursor-pointer hover:border-blue-400 transition-all duration-200">
+          <input
+            type="checkbox"
+            id="featured"
+            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+          />
+          <span className="ml-2 text-sm font-medium text-gray-700">✨ Featured</span>
         </label>
-      </div>
 
-      <div className="flex items-center">
-        <input
-          type="checkbox"
-          id="urgent"
-          className="h-4 w-4 text-red-600 focus:ring-red-500"
-        />
-        <label htmlFor="urgent" className="ml-2 text-lg font-bold text-gray-700">
-          Urgent
+        <label className="flex items-center p-3 border border-gray-200 rounded-xl cursor-pointer hover:border-blue-400 transition-all duration-200">
+          <input
+            type="checkbox"
+            id="urgent"
+            className="w-4 h-4 text-red-600 border-gray-300 rounded focus:ring-red-500"
+          />
+          <span className="ml-2 text-sm font-medium text-gray-700">🔥 Urgent</span>
         </label>
       </div>
     </div>
 
-    <div className="mt-4">
-      <label className="text-lg font-semibold text-gray-800">Is Deliverable</label>
-      <div className="mt-2 flex items-center space-x-4">
-        <div className="flex items-center">
+    {/* Delivery Option */}
+    <div className="filter-group bg-gray-50 p-4 rounded-2xl">
+      <label className="block text-sm font-medium text-gray-700 mb-3">Delivery Options</label>
+      <div className="grid grid-cols-2 gap-4">
+        <label className="flex items-center p-3 bg-white border border-gray-200 rounded-xl cursor-pointer hover:border-green-400 transition-all duration-200">
           <input
             type="radio"
             id="yes"
             name="deliverable"
-            className="h-4 w-4 text-green-600 focus:ring-green-500"
+            className="w-4 h-4 text-green-600 border-gray-300 focus:ring-green-500"
           />
-          <label htmlFor="yes" className="ml-2 text-sm text-gray-700">
-            Yes
-          </label>
-        </div>
+          <span className="ml-2 text-sm font-medium text-gray-700">✅ Available</span>
+        </label>
 
-        <div className="flex items-center">
+        <label className="flex items-center p-3 bg-white border border-gray-200 rounded-xl cursor-pointer hover:border-red-400 transition-all duration-200">
           <input
             type="radio"
             id="no"
             name="deliverable"
-            className="h-4 w-4 text-red-600 focus:ring-red-500"
+            className="w-4 h-4 text-red-600 border-gray-300 focus:ring-red-500"
           />
-          <label htmlFor="no" className="ml-2 text-sm text-gray-700">
-            No
-          </label>
-        </div>
+          <span className="ml-2 text-sm font-medium text-gray-700">❌ Not Available</span>
+        </label>
       </div>
     </div>
 
     {/* Price Range */}
-    <div className='mt-4'>
-      <label className="text-lg font-semibold  text-gray-800">Price Range</label>
-      <div className="flex items-center justify-between mt-4">
-        {/* Min Price Input */}
-        <input
-          type="number"
-          min="0"
-          max={maxPrice}
-          value={minPrice}
-          onChange={(e) => setMinPrice(e.target.value)}
-          className="w-1/3 p-2 border border-gray-300 rounded-l-md"
-        />
+    <div className="filter-group">
+      <label className="inline-block text-sm font-medium text-gray-700 mb-3 bg-gray-50 px-3 py-1 rounded-full">
+        Price Range
+      </label>
+      
+      <div className="bg-gray-50 p-4 rounded-2xl">
+        <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">₨</span>
+            <input
+              type="number"
+              min="0"
+              max={maxPrice}
+              value={minPrice}
+              onChange={(e) => setMinPrice(e.target.value)}
+              className="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring focus:ring-blue-200"
+              placeholder="Min"
+            />
+          </div>
 
-        <span className="mx-2 text-lg font-semibold text-gray-800">-</span>
+          <div className="relative">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500">₨</span>
+            <input
+              type="number"
+              min={minPrice}
+              max="400000"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              className="w-full pl-8 pr-4 py-2 rounded-xl border border-gray-200 focus:border-blue-500 focus:ring focus:ring-blue-200"
+              placeholder="Max"
+            />
+          </div>
+        </div>
 
-        {/* Max Price Input */}
-        <input
-          type="number"
-          min={minPrice}
-          max="400000"
-          value={maxPrice}
-          onChange={(e) => setMaxPrice(e.target.value)}
-          className="w-1/3 p-2 border border-gray-300 rounded-r-md"
-        />
-      </div>
-
-      {/* Price Range Labels */}
-      <div className="flex justify-between font-semibold text-sm text-gray-500 mt-2">
-        <span>From ₨{minPrice}</span>
-        <span>To ₨{maxPrice}</span>
-      </div>
-
-      {/* Range Slider */}
-      <div className="mt-4">
         <input
           type="range"
           min="0"
           max="400000"
           value={maxPrice}
           onChange={(e) => setMaxPrice(e.target.value)}
-          className="w-full h-3 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full cursor-pointer shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-          style={{
-            backgroundSize: `${(maxPrice / 400000) * 100}% 100%`,
-            transition: "background-size 0.5s ease-in-out",
-          }}
+          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
         />
-        <span className="ml-4 text-lg font-semibold text-blue-600">₨{maxPrice}</span>
-      </div>
 
-      {/* Range Labels */}
-      <div className="flex justify-between font-semibold text-sm text-gray-500 mt-2">
-        <span>From pkr 0</span>
-        <span>Max pkr 400,000</span>
+        <div className="flex justify-between mt-2 text-xs text-gray-500">
+          <span>₨0</span>
+          <span>₨400,000</span>
+        </div>
       </div>
     </div>
   </div>
 
-  {/* Product Section */}
-  <div className="bg-white rounded-lg p-8 shadow-xl transition-transform duration-300 hover:shadow-2xl md:col-span-3">
-    <div className="flex items-center space-x-4">
-      {/* Grid View Button - Hidden on Mobile */}
-      <button
-        onClick={() => setIsGridView(true)}
-        className={`p-3 rounded-full transition-all duration-200 ${isGridView ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
-      >
-        <FontAwesomeIcon icon={faTh} size="lg" />
-      </button>
+  {/* Apply Filters Button */}
+  <button className="w-full mt-6 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl font-medium shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-all duration-200">
+    Apply Filters
+  </button>
+</div>
 
-      {/* List View Button - Hidden on Mobile */}
-      <button
-        onClick={() => setIsGridView(false)}
-        className={`p-3 rounded-full transition-all duration-200 ${!isGridView ? 'bg-green-600 text-white' : 'bg-gray-100 hover:bg-gray-200'}`}
-      >
-        <FontAwesomeIcon icon={faBars} size="lg" />
-      </button>
-      
-      <h2 className="text-3xl md:text-4xl font-bold font-roboto text-gray-800 hover:text-green-600 transition duration-300 ml-4">Searched Products</h2>
+  {/* Product Section */}
+  <div className="bg-white font-raleway md:col-span-3 rounded-2xl p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-300">
+  {/* Header Section */}
+  <div className="flex flex-col space-y-6 mb-8">
+    <div className="flex items-center justify-between">
+      <div className="flex items-center space-x-4">
+        {/* Title with Subtitle */}
+        <div>
+          <h2 className="text-2xl font-bold text-gray-800 flex items-center">
+            <span className="bg-gradient-to-r from-blue-600 to-blue-800 text-white p-2 rounded-lg mr-3">
+              <FontAwesomeIcon icon={faSearch} className="text-xl" />
+            </span>
+            Search Results
+            <span className="ml-3 text-sm font-normal text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+              {products.length} items found
+            </span>
+          </h2>
+          <p className="text-gray-500 text-sm mt-1">Showing results for your search</p>
+        </div>
+      </div>
+
+      {/* View Toggle Buttons */}
+      <div className="flex items-center space-x-2 bg-gray-100 p-1 rounded-xl">
+        <button
+          onClick={() => setIsGridView(true)}
+          className={`p-2.5 rounded-lg transition-all duration-200 ${
+            isGridView 
+              ? 'bg-white text-blue-600 shadow-md' 
+              : 'text-gray-600 hover:text-blue-600'
+          }`}
+        >
+          <FontAwesomeIcon icon={faTh} size="lg" />
+        </button>
+        <button
+          onClick={() => setIsGridView(false)}
+          className={`p-2.5 rounded-lg transition-all duration-200 ${
+            !isGridView 
+              ? 'bg-white text-blue-600 shadow-md' 
+              : 'text-gray-600 hover:text-blue-600'
+          }`}
+        >
+          <FontAwesomeIcon icon={faBars} size="lg" />
+        </button>
+      </div>
     </div>
 
-    {renderCategorySpecificFilters()}
-
-    {/* Sort By dropdown */}
-    <div className="relative mb-6 mt-6">
+    {/* Filters and Sort */}
+    <div className="flex flex-wrap gap-4 items-center justify-between bg-gray-50 p-4 rounded-xl">
+      <div className="flex flex-wrap gap-2">
+        {renderCategorySpecificFilters()}
+      </div>
+      
       <select
         value={sortOption}
         onChange={(e) => setSortOption(e.target.value)}
-        className="p-3 border rounded-full text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400 w-full transition-all duration-300 hover:bg-gray-200"
+        className="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 cursor-pointer hover:border-blue-500/50 transition-all duration-200"
       >
-        <option value="default">Sort By</option>
-        <option value="asc">Price: Low to High</option>
-        <option value="desc">Price: High to Low</option>
-        <option value="featured">Featured</option>
+        <option value="default">Sort By: Default</option>
+        <option value="asc">💰 Price: Low to High</option>
+        <option value="desc">💎 Price: High to Low</option>
+        <option value="featured">⭐ Featured First</option>
       </select>
     </div>
-    <div className={`grid ${isGridView ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8' : 'grid-cols-1'} mx-auto`}>
-  {products.length > 0 ? (
-    products.map((product, index) => {
-      const isLastElement = index === products.length - 1;
-      return (
-        <div
-          ref={isLastElement ? lastProductElementRef : null}
-          key={product.id || product.title || product.name}
-          className={`bg-white rounded-3xl shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-2xl border border-gray-100 ${isGridView ? 'flex flex-col' : 'flex items-center'} mx-auto`}
-        >
-          {/* Product Image */}
-          <div className="relative">
-            {/* Featured Button */}
-            <div className="absolute top-4 h-8 left-4 bg-green-800 text-gray-200 font-roboto text-sm font-semibold px-4 py-1 rounded-lg shadow-lg hover:bg-green-600 transition duration-300 flex items-center justify-center">
-              Featured
-            </div>
+  </div>
+
+  {/* Products Grid */}
+  <div className={`grid ${
+    isGridView 
+      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' 
+      : 'grid-cols-1 gap-4'
+  }`}>
+    {products.length > 0 ? (
+      products.map((product, index) => {
+        const isLastElement = index === products.length - 1;
+        return (
+          <div
+            ref={isLastElement ? lastProductElementRef : null}
+            key={product.id || product.title || product.name}
+            className={`group bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden ${
+              isGridView ? 'flex flex-col' : 'flex items-center gap-6'
+            }`}
+          >
+            {/* Product Image */}
             <div className="relative">
-              {product.image && (
+              {product.featured && (
+                <div className="absolute top-4 left-4 z-10">
+                  <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-blue-600 text-white shadow-lg">
+                    <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                    </svg>
+                    Featured
+                  </span>
+                </div>
+              )}
+              
+              <div className="relative overflow-hidden">
                 <img
                   src={product.image}
                   alt={product.title || product.name}
-                  className={`object-cover ${isGridView ? 'h-80 w-full' : 'h-72 w-72'} transition-transform duration-300`}
+                  className={`object-cover transform group-hover:scale-105 transition-transform duration-700 ${
+                    isGridView ? 'h-64 w-full' : 'h-48 w-48 rounded-xl'
+                  }`}
                 />
-              )}
-              <div className="absolute inset-0 bg-black bg-opacity-15"></div> {/* Dark overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+            </div>
+
+            {/* Product Content */}
+            <div className={`flex-1 p-6 ${isGridView ? '' : 'w-full'}`}>
+              <div className="flex flex-col space-y-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-200">
+                    {product.category === 'Academics' ? product.title : product.name}
+                  </h3>
+                  <div className="mt-2 flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-blue-600">{product.price}</span>
+                    {product.originalPrice && (
+                      <span className="text-sm text-gray-400 line-through">{product.originalPrice}</span>
+                    )}
+                  </div>
+                </div>
+
+                {product.category === 'Academics' && (
+                  <p className="text-sm text-gray-600">
+                    <span className="font-medium">{product.university}</span> • {product.duration}
+                  </p>
+                )}
+
+                <p className="text-sm text-gray-500 line-clamp-2">{product.description || product.details}</p>
+
+                {product.location && (
+                  <p className="text-sm text-gray-600 flex items-center">
+                    <FontAwesomeIcon icon={faLocationDot} className="mr-2 text-blue-500" />
+                    {product.location}
+                  </p>
+                )}
+
+                <div className="flex items-center justify-between pt-4">
+                  <button className="flex items-center justify-center px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                    <FontAwesomeIcon icon={faPhone} className="mr-2" />
+                    Contact Seller
+                  </button>
+                  
+                  <button className="p-2 text-gray-400 hover:text-red-500 transition-colors duration-200">
+                    <FontAwesomeIcon icon={faHeartCirclePlus} size="lg" />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
-
-          {/* Product Content */}
-          <div className={`${isGridView ? 'p-6' : 'p-4 text-center'} space-y-5`}>
-            <h3 className="font-bold text-xl text-gray-800 hover:text-green-600 font-raleway transition duration-300">
-              {product.category === 'Academics' ? product.title : product.name}
-            </h3>
-            <p className="text-black font-semibold font-roboto">
-              {product.price}{' '}
-              <span className="line-through text-gray-400 font-sansing">{product.originalPrice}</span>
-            </p>
-            {product.category === 'Academics' && (
-              <p className="text-gray-500">{product.university} - {product.duration}</p>
-            )}
-            <p className="text-gray-500 font-roboto">{product.description || product.details}</p>
-            {product.location && (
-              <p className="text-gray-500 flex items-center font-raleway justify-center">
-                <FontAwesomeIcon icon={faLocationDot} className="mr-1 text-green-500" />
-                {product.location}
-              </p>
-            )}
-
-            {/* Heart Icon */}
-            <div className="flex justify-center items-center">
-              <FontAwesomeIcon
-                icon={faHeartCirclePlus}
-                className="text-green-500 text-2xl hover:text-green-600 transition duration-300 cursor-pointer"
-              />
-            </div>
-
-            {/* Contact Button */}
-            <div className="flex justify-center">
-              <button className="bg-gradient-to-r from-green-700 to-green-800 w-64 font-roboto text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg hover:from-green-600 hover:to-green-800 transition duration-300 flex items-center justify-center">
-                <FontAwesomeIcon icon={faPhone} className="mr-2" />
-                Contact
-              </button>
-            </div>
-          </div>
-        </div>
-      );
-    })
-  ) : (
-    <p>No products available</p>
+        );
+      })
+    ) : (
+      <div className="text-center py-12 px-4">
+        <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <h3 className="mt-2 text-sm font-medium text-gray-900">No products found</h3>
+        <p className="mt-1 text-sm text-gray-500">Try adjusting your search or filter to find what you're looking for.</p>
+      </div>
+    )}
+  </div>
+  
+  {/* Load More */}
+  {products.length > 0 && (
+    <div className="mt-8 flex justify-center">
+      <button className="px-6 py-3 bg-gray-100 text-gray-800 rounded-xl hover:bg-gray-200 transition-all duration-200">
+        Load More Results
+      </button>
+    </div>
   )}
 </div>
-
-
-  </div>
     {/* Product Display */}
       
 
@@ -1042,7 +1232,7 @@ useEffect(() => {
   </div>
 </div>
 
-
+</div>
 
 
 
